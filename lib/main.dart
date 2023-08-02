@@ -1,5 +1,7 @@
+import 'package:drive_test_pal/constants.dart';
+import 'package:drive_test_pal/screens/question_category_screen.dart';
 import 'package:flutter/material.dart';
-import 'screens/home_page.dart';
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(const DriveTestPal());
@@ -12,10 +14,14 @@ class DriveTestPal extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        primaryColor: Color(0xFF262135),
-        scaffoldBackgroundColor: Color(0xFF262135),
+        primaryColor: kAppThemeColor,
+        scaffoldBackgroundColor: kAppThemeColor,
       ),
-      home: const HomePage(),
+      initialRoute: '/',
+      routes: {
+        '/' :(context) => HomeScreen(),
+        '/first' :(context) => QuestionCategoryScreen(),
+      },
     );
   }
 }
