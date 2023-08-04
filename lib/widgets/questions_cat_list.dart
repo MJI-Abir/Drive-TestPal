@@ -8,13 +8,9 @@ class QuestionsCatList extends StatelessWidget {
     return ListView(
       children: <Widget>[
         QuestionCatTile(),
-        const SizedBox(height: 10.0),
         QuestionCatTile(),
-        const SizedBox(height: 10.0),
         QuestionCatTile(),
-        const SizedBox(height: 10.0),
         QuestionCatTile(),
-        const SizedBox(height: 10.0),
       ],
     );
   }

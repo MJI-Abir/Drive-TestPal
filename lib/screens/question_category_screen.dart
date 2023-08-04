@@ -19,6 +19,3 @@ class QuestionCategoryScreen extends StatelessWidget {
     );
   }
 }
-
-
-

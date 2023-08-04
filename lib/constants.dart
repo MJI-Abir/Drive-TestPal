@@ -43,6 +43,8 @@ const kResultTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+const kButtonPadding = EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0);
+
 const kBMITextStyle = TextStyle(
   fontSize: 100.0,
   fontWeight: FontWeight.bold,
@@ -51,3 +53,5 @@ const kBMITextStyle = TextStyle(
 const kBodyTextStyle = TextStyle(
   fontSize: 22.0,
 );
+
+const kDividerStyle = Divider(thickness: 2.0, color: Colors.grey);
