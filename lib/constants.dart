@@ -6,6 +6,7 @@ const kInactiveCardColor = Color(0x100c353b);
 const kBottomContainerColor = Color(0xFFEB1555);
 const kAppBarColor = Color(0xFF08272c);
 
+const kBorderRadius = BorderRadius.all(Radius.circular(8.0));
 const kLabelTextStyle = TextStyle(
   fontSize: 18.0,
   color: Colors.black87,
@@ -54,4 +55,4 @@ const kBodyTextStyle = TextStyle(
   fontSize: 22.0,
 );
 
-const kDividerStyle = Divider(thickness: 2.0, color: Colors.grey);
+const kDividerStyle = Divider(thickness: 2.0, color: Colors.blueGrey);

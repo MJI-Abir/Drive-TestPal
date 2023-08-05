@@ -14,17 +14,16 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   // bool _isHovered = true;
 
-  Expanded buildKey(IconData iconData, String cardLabel) {
+  Expanded buildKey(IconData iconData, String cardLabel, String navigateTo) {
     return Expanded(
       child: ReusableCard(
         color: kActiveCardColor,
         // color: _isHovered ? kActiveCardColor : kInactiveCardColor,
         cardChild: IconContent(icon: iconData, label: cardLabel),
         onPress: () {
-          Navigator.pushNamed(context, '/first');
+          Navigator.pushNamed(context, navigateTo);
         },
-        //TODO 2: Create a method "animateWhileHovering" to make an animation while hovering over the ReusableCard.
-        // isHovered: _isHovered,
+        //TODO 1: Create a method "animateWhileHovering" to make an animation while hovering over the ReusableCard.
       ),
     );
   }
@@ -45,20 +44,20 @@ class _HomeScreenState extends State<HomeScreen> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              buildKey(FontAwesomeIcons.listCheck, 'Start Test'),
-              buildKey(FontAwesomeIcons.book, 'Flash Cards'),
+              buildKey(FontAwesomeIcons.listCheck, 'Start Test', '/'),
+              buildKey(FontAwesomeIcons.book, 'Flash Cards', '/questionCatScreen'),
             ],
           ),
           Row(
             children: <Widget>[
-              buildKey(FontAwesomeIcons.circleInfo, 'Info'),
-              buildKey(FontAwesomeIcons.gear, 'Settings'),
+              buildKey(FontAwesomeIcons.circleInfo, 'Info', '/'),
+              buildKey(FontAwesomeIcons.gear, 'Settings', '/'),
             ],
           ),
           Row(
             children: <Widget>[
-              buildKey(FontAwesomeIcons.handHoldingDollar, 'Upgrade'),
-              buildKey(FontAwesomeIcons.book, 'Free Stuff'),
+              buildKey(FontAwesomeIcons.handHoldingDollar, 'Upgrade', '/'),
+              buildKey(FontAwesomeIcons.book, 'Free Stuff', '/'),
             ],
           ),
         ],

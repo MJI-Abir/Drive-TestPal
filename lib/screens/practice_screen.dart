@@ -1,4 +1,4 @@
-import 'package:drive_test_pal/pracitce_question_brain.dart';
+import 'package:drive_test_pal/practice_question_brain.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:drive_test_pal/constants.dart';
@@ -45,7 +45,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
               ),
             ),
           ),
-          
+
           //option 1
           buildOptions(0),
 
@@ -80,7 +80,6 @@ class _PracticeScreenState extends State<PracticeScreen> {
           Padding(
             padding: kButtonPadding,
             child: TextButton(
-              
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.green,
@@ -99,7 +98,9 @@ class _PracticeScreenState extends State<PracticeScreen> {
                       desc: "You have reached the end of the quiz.",
                       buttons: [
                         DialogButton(
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                           width: 120,
                           child: const Text(
                             "CONTINUE",
@@ -108,7 +109,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
                         )
                       ],
                     ).show();
-          
+
                     practiceQuestionBrain.reset();
                   }
                   correctOptionIndex = null;

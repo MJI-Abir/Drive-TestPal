@@ -1,7 +1,6 @@
 import 'package:drive_test_pal/constants.dart';
 import 'package:drive_test_pal/screens/practice_screen.dart';
 import 'package:drive_test_pal/screens/question_category_screen.dart';
-import 'package:drive_test_pal/screens/test_theme_screen.dart';
 import 'package:flutter/material.dart';
 import 'screens/home_screen.dart';
 
@@ -15,6 +14,7 @@ class DriveTestPal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         primaryColor: kAppThemeColor,
         scaffoldBackgroundColor: kAppThemeColor,
@@ -22,9 +22,8 @@ class DriveTestPal extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/' :(context) => const HomeScreen(),
-        '/first' :(context) => const QuestionCategoryScreen(),
-        '/practicePage' : (context) => const PracticeScreen(),
-        '/test' :(context) => const TestThemeScreen(),
+        '/questionCatScreen' :(context) => const QuestionCategoryScreen(),
+        '/practiceScreen' : (context) => const PracticeScreen(),
       },
     );
   }
