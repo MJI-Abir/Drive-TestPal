@@ -111,9 +111,10 @@ class _PracticeScreenState extends State<PracticeScreen> {
                     ).show();
 
                     practiceQuestionBrain.reset();
+                  } else {
+                    correctOptionIndex = null;
+                    practiceQuestionBrain.nextPracticeQuestion();
                   }
-                  correctOptionIndex = null;
-                  practiceQuestionBrain.nextPracticeQuestion();
                 });
               },
             ),

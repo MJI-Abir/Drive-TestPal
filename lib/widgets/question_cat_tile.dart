@@ -1,3 +1,4 @@
+import 'package:drive_test_pal/widgets/questions_cat_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:drive_test_pal/constants.dart';
@@ -7,15 +8,14 @@ class QuestionCatTile extends StatelessWidget {
   final int questionCatTileTotal;
   final int questionCatTileNotAttempted;
   final int questionCatTileCorrect;
+  final QuestionType questionType;
   const QuestionCatTile(
     this.questionCatTileTitle,
     this.questionCatTileTotal,
     this.questionCatTileNotAttempted,
     this.questionCatTileCorrect,
+    this.questionType,
   );
-
-  int get questionCatTileInCorrect =>
-      questionCatTileTotal - questionCatTileCorrect;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class QuestionCatTile extends StatelessWidget {
                 style: kQuestionCatSubTitleStyle,
               ),
               Text(
-                'Incorrect: $questionCatTileInCorrect, Correct: $questionCatTileCorrect',
+                'Incorrect: ${questionCatTileTotal-questionCatTileCorrect}, Correct: $questionCatTileCorrect',
                 style: kQuestionCatSubTitleStyle,
               ),
               kDividerStyle,
