@@ -1,5 +1,4 @@
 import 'package:drive_test_pal/practice_question_brain.dart';
-import 'package:drive_test_pal/screens/practice_screen.dart';
 import 'package:drive_test_pal/widgets/questions_cat_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
