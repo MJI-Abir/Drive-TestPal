@@ -3,6 +3,7 @@ import 'package:drive_test_pal/widgets/questions_cat_list.dart';
 
 class PracticeQuestionBrain {
   int _questionId = 0;
+  QuestionType _questionType = QuestionType.allQuestions;
 
   final List<PracticeQuestion> _practiceQuestionBank = [
     PracticeQuestion(
@@ -22,45 +23,57 @@ class PracticeQuestionBrain {
         'What is the first thing to do when you are involved in an accident where the other driver was injured',
         1,
         ['a) option 141', 'b) option 142', 'c) option 143', 'd) option 144']),
-        PracticeQuestion(
+    PracticeQuestion(
         QuestionType.accidents,
         'What is the first thing to do when you are involved in an accident where the other driver was injured',
-        1,
-        ['a) option 1421221', 'b) option 142', 'c) option 143', 'd) option 144']),
+        1, [
+      'a) option 1421221',
+      'b) option 142',
+      'c) option 143',
+      'd) option 144'
+    ]),
     PracticeQuestion(QuestionType.intersection, 'Second Category Question', 2,
         ['a) option 211', 'b) option 212', 'c) option 213', 'd) option 214']),
   ];
 
-  List<PracticeQuestion> getQuestionsWithCorrespondingQuestionTileId(
-          QuestionType questionType) =>
-      _practiceQuestionBank
-          .where((question) => question.questionType == questionType)
-          .toList();
+  List<PracticeQuestion> getQuestionsWithCorrespondingQuestionType(
+      QuestionType questionType) {
+        return
+        _questionType == QuestionType.allQuestions? _practiceQuestionBank :_practiceQuestionBank
+        .where((question) => question.questionType == _questionType)
+        .toList();
+  }
 
-  QuestionType getQuestionType(){
-    return _practiceQuestionBank[_questionId].questionType;
+  void setQuestionType(QuestionType questionType) {
+    _questionType = questionType;
   }
 
   void nextPracticeQuestion() {
-    if (_questionId < getQuestionsWithCorrespondingQuestionTileId(getQuestionType()).length - 1) {
+    print(_questionType);
+    if (_questionId <
+        getQuestionsWithCorrespondingQuestionType(_questionType).length - 1) {
       _questionId++;
     }
   }
 
   String getQuestionText() {
-    return getQuestionsWithCorrespondingQuestionTileId(getQuestionType())[_questionId].questionText;
+    return getQuestionsWithCorrespondingQuestionType(_questionType)[_questionId]
+        .questionText;
   }
 
   List<String> getOptions() {
-    return getQuestionsWithCorrespondingQuestionTileId(getQuestionType())[_questionId].options;
+    return getQuestionsWithCorrespondingQuestionType(_questionType)[_questionId]
+        .options;
   }
 
   int getCorrectOption() {
-    return getQuestionsWithCorrespondingQuestionTileId(getQuestionType())[_questionId].questionAnswer;
+    return getQuestionsWithCorrespondingQuestionType(_questionType)[_questionId]
+        .questionAnswer;
   }
 
   bool isFinished() {
-    if (_questionId >= getQuestionsWithCorrespondingQuestionTileId(getQuestionType()).length - 1) {
+    if (_questionId >=
+        getQuestionsWithCorrespondingQuestionType(_questionType).length - 1) {
       return true;
     } else {
       return false;

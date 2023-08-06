@@ -1,7 +1,12 @@
+import 'package:drive_test_pal/practice_question_brain.dart';
+import 'package:drive_test_pal/screens/practice_screen.dart';
 import 'package:drive_test_pal/widgets/questions_cat_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:drive_test_pal/constants.dart';
+
+
+PracticeQuestionBrain practiceQuestionBrain = PracticeQuestionBrain();
 
 class QuestionCatTile extends StatelessWidget {
   final String questionCatTileTitle;
@@ -51,8 +56,8 @@ class QuestionCatTile extends StatelessWidget {
             ],
           ),
           leading: const Icon(FontAwesomeIcons.addressBook),
-          onTap: (){
-            Navigator.pushNamed(context, '/practiceScreen');
+          onTap: () {
+            Navigator.pushNamed(context, '/practiceScreen', arguments: questionType);
           },
         ),
       ),

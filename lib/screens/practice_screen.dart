@@ -1,4 +1,5 @@
 import 'package:drive_test_pal/practice_question_brain.dart';
+import 'package:drive_test_pal/widgets/questions_cat_list.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:drive_test_pal/constants.dart';
@@ -14,6 +15,7 @@ class PracticeScreen extends StatefulWidget {
 
 class _PracticeScreenState extends State<PracticeScreen> {
   int? correctOptionIndex;
+
   void highlightCorrectAnswer() {
     final correctOption = practiceQuestionBrain.getCorrectOption();
     setState(() {
@@ -23,6 +25,10 @@ class _PracticeScreenState extends State<PracticeScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    final questionType = ModalRoute.of(context)?.settings.arguments as QuestionType;
+    practiceQuestionBrain.setQuestionType(questionType);
+
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,8 +98,9 @@ class _PracticeScreenState extends State<PracticeScreen> {
                 setState(() {
                   if (practiceQuestionBrain.isFinished()) {
                     Alert(
+                      style: const AlertStyle(backgroundColor: kActiveCardColor),
                       context: context,
-                      type: AlertType.error,
+                      type: AlertType.info,
                       title: "FINISHED!",
                       desc: "You have reached the end of the quiz.",
                       buttons: [
@@ -104,7 +111,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
                           width: 120,
                           child: const Text(
                             "CONTINUE",
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+                            style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                         )
                       ],
