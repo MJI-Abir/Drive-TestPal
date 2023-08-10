@@ -1,4 +1,4 @@
-import 'package:drive_test_pal/widgets/questions_cat_list.dart';
+import '../enums/enum.dart';
 
 class PracticeQuestion{
   final QuestionType questionType;

@@ -1,20 +1,13 @@
 import 'package:drive_test_pal/components/icon_content.dart';
 import 'package:drive_test_pal/components/reusable_card.dart';
-import 'package:drive_test_pal/constants.dart';
+import 'package:drive_test_pal/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class Home extends StatelessWidget {
+  const Home({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  // bool _isHovered = true;
-
-  Expanded buildKey(IconData iconData, String cardLabel, String navigateTo) {
+  Expanded buildKey(IconData iconData, String cardLabel, String navigateTo, BuildContext context) {
     return Expanded(
       child: ReusableCard(
         color: kActiveCardColor,
@@ -30,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kAppBarColor,
@@ -44,20 +38,20 @@ class _HomeScreenState extends State<HomeScreen> {
         children: <Widget>[
           Row(
             children: <Widget>[
-              buildKey(FontAwesomeIcons.listCheck, 'Start Test', '/'),
-              buildKey(FontAwesomeIcons.book, 'Flash Cards', '/questionCatScreen'),
+              buildKey(FontAwesomeIcons.listCheck, 'Start Test', '/', context),
+              buildKey(FontAwesomeIcons.book, 'Flash Cards', '/questionCatScreen', context),
             ],
           ),
           Row(
             children: <Widget>[
-              buildKey(FontAwesomeIcons.circleInfo, 'Info', '/'),
-              buildKey(FontAwesomeIcons.gear, 'Settings', '/'),
+              buildKey(FontAwesomeIcons.circleInfo, 'Info', '/', context),
+              buildKey(FontAwesomeIcons.gear, 'Settings', '/', context),
             ],
           ),
           Row(
             children: <Widget>[
-              buildKey(FontAwesomeIcons.handHoldingDollar, 'Upgrade', '/'),
-              buildKey(FontAwesomeIcons.book, 'Free Stuff', '/'),
+              buildKey(FontAwesomeIcons.handHoldingDollar, 'Upgrade', '/', context),
+              buildKey(FontAwesomeIcons.book, 'Free Stuff', '/', context),
             ],
           ),
         ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/questions_cat_list.dart';
+import '../../../widgets/questions_cat_list.dart';
 
 class QuestionCategoryScreen extends StatelessWidget {
   const QuestionCategoryScreen({super.key});

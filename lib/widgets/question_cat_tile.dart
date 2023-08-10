@@ -1,8 +1,9 @@
 import 'package:drive_test_pal/practice_question_brain.dart';
-import 'package:drive_test_pal/widgets/questions_cat_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:drive_test_pal/constants.dart';
+import 'package:drive_test_pal/constants/constants.dart';
+
+import '../enums/enum.dart';
 
 
 PracticeQuestionBrain practiceQuestionBrain = PracticeQuestionBrain();

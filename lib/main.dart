@@ -1,8 +1,8 @@
-import 'package:drive_test_pal/constants.dart';
-import 'package:drive_test_pal/screens/practice_screen.dart';
-import 'package:drive_test_pal/screens/question_category_screen.dart';
+import 'package:drive_test_pal/constants/constants.dart';
+import 'package:drive_test_pal/features/practice_questions/ui/practice.dart';
+import 'package:drive_test_pal/features/question_category/ui/question_category_screen.dart';
 import 'package:flutter/material.dart';
-import 'screens/home_screen.dart';
+import 'features/home/ui/home.dart';
 
 void main() {
   runApp(const DriveTestPal());
@@ -21,7 +21,7 @@ class DriveTestPal extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/' :(context) => const HomeScreen(),
+        '/' :(context) => const Home(),
         '/questionCatScreen' :(context) => const QuestionCategoryScreen(),
         '/practiceScreen' : (context) => const PracticeScreen(),
       },
