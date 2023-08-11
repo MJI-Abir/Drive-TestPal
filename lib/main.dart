@@ -1,5 +1,5 @@
 import 'package:drive_test_pal/constants/constants.dart';
-import 'package:drive_test_pal/features/practice_questions/ui/practice.dart';
+import 'package:drive_test_pal/features/practice_screen/ui/practice.dart';
 import 'package:drive_test_pal/features/question_category/ui/question_category_screen.dart';
 import 'package:flutter/material.dart';
 import 'features/home/ui/home.dart';

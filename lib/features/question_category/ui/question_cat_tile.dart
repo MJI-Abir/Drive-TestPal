@@ -1,26 +1,19 @@
+import 'package:drive_test_pal/features/question_category/bloc/bloc/question_category_bloc.dart';
+import 'package:drive_test_pal/features/question_category/models/question_category_model.dart';
 import 'package:drive_test_pal/practice_question_brain.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:drive_test_pal/constants/constants.dart';
 
-import '../enums/enum.dart';
-
-
 PracticeQuestionBrain practiceQuestionBrain = PracticeQuestionBrain();
 
 class QuestionCatTile extends StatelessWidget {
-  final String questionCatTileTitle;
-  final int questionCatTileTotal;
-  final int questionCatTileNotAttempted;
-  final int questionCatTileCorrect;
-  final QuestionType questionType;
-  const QuestionCatTile(
-    this.questionCatTileTitle,
-    this.questionCatTileTotal,
-    this.questionCatTileNotAttempted,
-    this.questionCatTileCorrect,
-    this.questionType,
-  );
+  final QuestionCategoryModel questionCategoryModel;
+  final QuestionCategoryBloc questionCategoryBloc;
+  const QuestionCatTile({
+    required this.questionCategoryBloc,
+    required this.questionCategoryModel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,16 +32,17 @@ class QuestionCatTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                questionCatTileTitle,
+                questionCategoryModel.title,
                 style: kQuestionCatTitleStyle,
               ),
               const SizedBox(height: 10.0),
               Text(
-                'Total: $questionCatTileTotal, Not Attempted: $questionCatTileNotAttempted',
+                
+                'Total: ${questionCategoryModel.total}, Not Attempted: ${questionCategoryModel.notAttempted}',
                 style: kQuestionCatSubTitleStyle,
               ),
               Text(
-                'Incorrect: ${questionCatTileTotal-questionCatTileCorrect}, Correct: $questionCatTileCorrect',
+                'Incorrect: ${questionCategoryModel.total - questionCategoryModel.correct}, Correct: ${questionCategoryModel.correct}',
                 style: kQuestionCatSubTitleStyle,
               ),
               kDividerStyle,
@@ -57,7 +51,7 @@ class QuestionCatTile extends StatelessWidget {
           ),
           leading: const Icon(FontAwesomeIcons.addressBook),
           onTap: () {
-            Navigator.pushNamed(context, '/practiceScreen', arguments: questionType);
+            // Navigator.pushNamed(context, '/practiceScreen', arguments: questionType);
           },
         ),
       ),
