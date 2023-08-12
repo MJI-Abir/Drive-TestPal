@@ -6,6 +6,6 @@ sealed class QuestionCategoryEvent {}
 class QuestionCategoryInitialEvent extends QuestionCategoryEvent{}
 
 class QuestionCategorySelectedEvent extends QuestionCategoryEvent{
-  final QuestionType selectedQuestionType;
+  final QuestionTypeEnum selectedQuestionType;
   QuestionCategorySelectedEvent({ required this.selectedQuestionType});
 }

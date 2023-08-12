@@ -6,16 +6,16 @@ import 'enums/enum.dart';
 QuestionData questionData = QuestionData();
 class PracticeQuestionBrain {
   int _questionId = 0;
-  QuestionType _questionType = QuestionType.allQuestions;
+  QuestionTypeEnum _questionType = QuestionTypeEnum.allQuestions;
 
-  void setQuestionType(QuestionType questionType) {
+  void setQuestionType(QuestionTypeEnum questionType) {
     _questionType = questionType;
   }
-  
+
   List<PracticeQuestion> getQuestionsWithCorrespondingQuestionType(
-      QuestionType questionType) {
+      QuestionTypeEnum questionType) {
         return
-        questionType == QuestionType.allQuestions? QuestionData.questionBank :QuestionData.questionBank
+        questionType == QuestionTypeEnum.allQuestions? QuestionData.questionBank :QuestionData.questionBank
         .where((question) => question.questionType == _questionType)
         .toList();
   }
@@ -29,7 +29,6 @@ class PracticeQuestionBrain {
   }
 
   String getQuestionText() {
-    print(_questionType);
     return getQuestionsWithCorrespondingQuestionType(_questionType)[_questionId]
         .questionText;
   }

@@ -1,7 +1,7 @@
 import '../enums/enum.dart';
 
 class PracticeQuestion{
-  final QuestionType questionType;
+  final QuestionTypeEnum questionType;
   final String questionText;
   final int questionAnswer;
   final List<String> options;

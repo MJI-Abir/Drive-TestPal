@@ -6,7 +6,7 @@ class QuestionCategoryModel{
   final int total;
   final int notAttempted;
   final int correct;
-  final QuestionType questionType;
+  final QuestionTypeEnum questionType;
   const QuestionCategoryModel({
     required this.title,
     required this.total,

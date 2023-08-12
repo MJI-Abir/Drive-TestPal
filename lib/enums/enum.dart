@@ -1,6 +1,8 @@
-enum QuestionType{
+enum QuestionTypeEnum{
   allQuestions,
   accidents,
   lights,
   intersection,
+  laneChange,
+  parking,
 }

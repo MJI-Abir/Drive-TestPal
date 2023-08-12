@@ -33,22 +33,16 @@ class _PracticeScreenState extends State<PracticeScreen> {
         children: <Widget>[
           //Question Text
           buildQuestionText(),
-
           //option 1
           buildOptions(0),
-
           //option 2
           buildOptions(1),
-
           //option 3
           buildOptions(2),
-
           //option 4
           buildOptions(3),
-
           //show Answer button
           buildShowAnswerButton(),
-
           //next question button
           buildNextQuestionButton(context),
         ],

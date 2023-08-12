@@ -1,5 +1,6 @@
 import 'package:drive_test_pal/constants/constants.dart';
 import 'package:drive_test_pal/features/question_category/ui/question_category_screen.dart';
+import 'package:drive_test_pal/features/quiz/ui/quiz.dart';
 import 'package:flutter/material.dart';
 import 'features/home/ui/home.dart';
 
@@ -22,7 +23,7 @@ class DriveTestPal extends StatelessWidget {
       routes: {
         '/' :(context) => const Home(),
         '/questionCatScreen' :(context) => const QuestionCategoryScreen(),
-        // '/practiceScreen' : (context) => const PracticeScreen(),
+        '/quiz' : (context) => const Quiz(),
       },
     );
   }
