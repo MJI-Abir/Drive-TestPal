@@ -7,7 +7,7 @@ class QuestionCategoryInitialEvent extends QuestionCategoryEvent{}
 
 
 
-class CategorySelectedEvent extends QuestionCategoryEvent{
+class QuestionCategorySelectedEvent extends QuestionCategoryEvent{
   final QuestionType selectedQuestionType;
-  CategorySelectedEvent({ required this.selectedQuestionType});
+  QuestionCategorySelectedEvent({ required this.selectedQuestionType});
 }

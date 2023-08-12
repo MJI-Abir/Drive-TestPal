@@ -5,7 +5,7 @@ sealed class QuestionCategoryState {}
 
 sealed class QuestionCategoryActionState extends QuestionCategoryState{}
 
-class QuestionCategoryInitial extends QuestionCategoryState {}
+class QuestionCategoryInitialState extends QuestionCategoryState {}
 
 class QCLoadingState extends QuestionCategoryState{}
 

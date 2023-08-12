@@ -1,8 +1,11 @@
-import 'package:drive_test_pal/features/question_category/bloc/bloc/question_category_bloc.dart';
-import 'package:drive_test_pal/features/question_category/ui/question_cat_tile.dart';
+import 'package:drive_test_pal/features/practice_screen/ui/practice.dart';
+import 'package:drive_test_pal/features/question_category/bloc/question_category_bloc.dart';
+import 'package:drive_test_pal/features/question_category/ui/question_category_tile.dart';
+import 'package:drive_test_pal/practice_question_brain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+PracticeQuestionBrain practiceQuestionBrain = PracticeQuestionBrain();
 class QuestionCategoryScreen extends StatefulWidget {
   const QuestionCategoryScreen({super.key});
 
@@ -23,8 +26,18 @@ class _QuestionCategoryScreenState extends State<QuestionCategoryScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<QuestionCategoryBloc, QuestionCategoryState>(
       bloc: questionCategoryBloc,
+      listenWhen: (previous, current) => current is QuestionCategoryActionState,
+      buildWhen: (previous, current) => current is! QuestionCategoryActionState,
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is QCNavigateToPracticeQuestionScreenActionState) {
+          //TODO: Navigate to the PracticeQuestion Screen
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PracticeScreen(),
+            ),
+          );
+        }
       },
       builder: (context, state) {
         switch (state.runtimeType) {

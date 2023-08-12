@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:drive_test_pal/constants/constants.dart';
 
-import '../../../enums/enum.dart';
-
 PracticeQuestionBrain practiceQuestionBrain = PracticeQuestionBrain();
 
 class PracticeScreen extends StatefulWidget {
@@ -26,9 +24,6 @@ class _PracticeScreenState extends State<PracticeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-    final questionType = ModalRoute.of(context)?.settings.arguments as QuestionType;
-    practiceQuestionBrain.setQuestionType(questionType);
 
     return Scaffold(
       body: Column(
@@ -99,7 +94,8 @@ class _PracticeScreenState extends State<PracticeScreen> {
                 setState(() {
                   if (practiceQuestionBrain.isFinished()) {
                     Alert(
-                      style: const AlertStyle(backgroundColor: kActiveCardColor),
+                      style:
+                          const AlertStyle(backgroundColor: kActiveCardColor),
                       context: context,
                       type: AlertType.info,
                       title: "FINISHED!",
@@ -112,7 +108,10 @@ class _PracticeScreenState extends State<PracticeScreen> {
                           width: 120,
                           child: const Text(
                             "CONTINUE",
-                            style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
                           ),
                         )
                       ],

@@ -11,7 +11,7 @@ class PracticeQuestionBrain {
   List<PracticeQuestion> getQuestionsWithCorrespondingQuestionType(
       QuestionType questionType) {
         return
-        _questionType == QuestionType.allQuestions? QuestionData.questionBank :QuestionData.questionBank
+        questionType == QuestionType.allQuestions? QuestionData.questionBank :QuestionData.questionBank
         .where((question) => question.questionType == _questionType)
         .toList();
   }
@@ -28,6 +28,7 @@ class PracticeQuestionBrain {
   }
 
   String getQuestionText() {
+    print(_questionType);
     return getQuestionsWithCorrespondingQuestionType(_questionType)[_questionId]
         .questionText;
   }

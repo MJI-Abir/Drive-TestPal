@@ -1,4 +1,4 @@
-import 'package:drive_test_pal/features/question_category/bloc/bloc/question_category_bloc.dart';
+import 'package:drive_test_pal/features/question_category/bloc/question_category_bloc.dart';
 import 'package:drive_test_pal/features/question_category/models/question_category_model.dart';
 import 'package:drive_test_pal/practice_question_brain.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +11,7 @@ class QuestionCatTile extends StatelessWidget {
   final QuestionCategoryModel questionCategoryModel;
   final QuestionCategoryBloc questionCategoryBloc;
   const QuestionCatTile({
+    super.key, 
     required this.questionCategoryBloc,
     required this.questionCategoryModel,
   });
@@ -51,7 +52,7 @@ class QuestionCatTile extends StatelessWidget {
           ),
           leading: const Icon(FontAwesomeIcons.addressBook),
           onTap: () {
-            // Navigator.pushNamed(context, '/practiceScreen', arguments: questionType);
+            questionCategoryBloc.add(QuestionCategorySelectedEvent(selectedQuestionType: questionCategoryModel.questionType));
           },
         ),
       ),
