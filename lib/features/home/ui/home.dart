@@ -1,5 +1,6 @@
 import 'package:drive_test_pal/components/icon_content.dart';
 import 'package:drive_test_pal/components/reusable_card.dart';
+import 'package:drive_test_pal/config/routes/app_routes.dart';
 import 'package:drive_test_pal/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,8 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class Home extends StatelessWidget {
   const Home({super.key});
 
-  Expanded buildKey(IconData iconData, String cardLabel, String navigateTo,
-      BuildContext context) {
+  Expanded buildKey(IconData iconData, String cardLabel, String navigateTo, BuildContext context) {
     return Expanded(
       child: ReusableCard(
         color: kActiveCardColor,
@@ -24,6 +24,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kAppBarColor,
@@ -38,9 +39,8 @@ class Home extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              buildKey(
-                  FontAwesomeIcons.listCheck, 'Start Test', '/quiz', context),
-              buildKey(FontAwesomeIcons.book, 'Flash Cards', '/', context),
+              buildKey(FontAwesomeIcons.listCheck, 'Start Test', AppRoutes.quizPage, context),
+              buildKey(FontAwesomeIcons.book, 'Flash Cards', AppRoutes.questionCategoryPage, context),
             ],
           ),
           Row(
@@ -51,8 +51,7 @@ class Home extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              buildKey(
-                  FontAwesomeIcons.handHoldingDollar, 'Upgrade', '/', context),
+              buildKey(FontAwesomeIcons.handHoldingDollar, 'Upgrade', '/', context),
               buildKey(FontAwesomeIcons.book, 'Free Stuff', '/', context),
             ],
           ),

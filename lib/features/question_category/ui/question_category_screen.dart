@@ -1,4 +1,4 @@
-import 'package:drive_test_pal/features/practice_screen/ui/practice.dart';
+import 'package:drive_test_pal/config/routes/app_routes.dart';
 import 'package:drive_test_pal/features/question_category/bloc/question_category_bloc.dart';
 import 'package:drive_test_pal/features/question_category/ui/question_category_tile.dart';
 import 'package:drive_test_pal/practice_question_brain.dart';
@@ -30,15 +30,8 @@ class _QuestionCategoryScreenState extends State<QuestionCategoryScreen> {
       buildWhen: (previous, current) => current is! QuestionCategoryActionState,
       listener: (context, state) {
         if (state is QCNavigateToPracticeQuestionScreenActionState) {
-          print(state.selectedQuestionType);
           practiceQuestionBrain.setQuestionType(state.selectedQuestionType);
-          //TODO: Navigate to the PracticeQuestion Screen
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => PracticeScreen(),
-            ),
-          );
+          Navigator.pushNamed(context, AppRoutes.practicePage);
         }
       },
       builder: (context, state) {

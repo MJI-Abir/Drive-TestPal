@@ -1,8 +1,6 @@
+import 'package:drive_test_pal/config/routes/app_routes.dart';
 import 'package:drive_test_pal/constants/constants.dart';
-import 'package:drive_test_pal/features/question_category/ui/question_category_screen.dart';
-import 'package:drive_test_pal/features/quiz/ui/quiz.dart';
 import 'package:flutter/material.dart';
-import 'features/home/ui/home.dart';
 
 void main() {
   runApp(const DriveTestPal());
@@ -19,12 +17,8 @@ class DriveTestPal extends StatelessWidget {
         primaryColor: kAppThemeColor,
         scaffoldBackgroundColor: kAppThemeColor,
       ),
-      initialRoute: '/',
-      routes: {
-        '/' :(context) => const Home(),
-        '/questionCatScreen' :(context) => const QuestionCategoryScreen(),
-        '/quiz' : (context) => const Quiz(),
-      },
+      initialRoute: AppRoutes.homePage,
+      routes: AppRoutes.routes,
     );
   }
 }

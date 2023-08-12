@@ -8,6 +8,7 @@ import 'package:meta/meta.dart';
 
 part 'question_category_event.dart';
 part 'question_category_state.dart';
+
 class QuestionCategoryBloc
     extends Bloc<QuestionCategoryEvent, QuestionCategoryState> {
   QuestionCategoryBloc() : super(QuestionCategoryInitialState()) {
@@ -41,8 +42,7 @@ class QuestionCategoryBloc
   FutureOr<void> questionCategorySelectedEvent(
       QuestionCategorySelectedEvent event,
       Emitter<QuestionCategoryState> emit) {
-    print(event.selectedQuestionType);
-    // practiceQuestionBrain.setQuestionType(event.selectedQuestionType);
-    emit(QCNavigateToPracticeQuestionScreenActionState(selectedQuestionType: event.selectedQuestionType));
+    emit(QCNavigateToPracticeQuestionScreenActionState(
+        selectedQuestionType: event.selectedQuestionType));
   }
 }
