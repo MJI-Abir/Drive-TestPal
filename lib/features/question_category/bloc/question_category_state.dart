@@ -18,4 +18,14 @@ class QCLoadingSuccessState extends QuestionCategoryState{
 
 }
 
-class QCNavigateToPracticeQuestionScreenActionState extends QuestionCategoryActionState{}
+class QCNavigateToPracticeQuestionScreenActionState extends QuestionCategoryActionState{
+    final QuestionType selectedQuestionType;
+
+  QCNavigateToPracticeQuestionScreenActionState({required this.selectedQuestionType});
+}
+
+// class QCCategorySelectedActionState extends QuestionCategoryActionState{
+//   final QuestionType questionType;
+
+//   QCCategorySelectedActionState({required this.questionType});
+// }

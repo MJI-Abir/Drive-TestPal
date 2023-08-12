@@ -8,6 +8,10 @@ class PracticeQuestionBrain {
   int _questionId = 0;
   QuestionType _questionType = QuestionType.allQuestions;
 
+  void setQuestionType(QuestionType questionType) {
+    _questionType = questionType;
+  }
+  
   List<PracticeQuestion> getQuestionsWithCorrespondingQuestionType(
       QuestionType questionType) {
         return
@@ -16,9 +20,6 @@ class PracticeQuestionBrain {
         .toList();
   }
 
-  void setQuestionType(QuestionType questionType) {
-    _questionType = questionType;
-  }
 
   void nextPracticeQuestion() {
     if (_questionId <

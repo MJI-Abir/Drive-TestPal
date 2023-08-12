@@ -1,9 +1,9 @@
-import 'package:drive_test_pal/practice_question_brain.dart';
+import 'package:drive_test_pal/features/question_category/bloc/question_category_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:drive_test_pal/constants/constants.dart';
 
-PracticeQuestionBrain practiceQuestionBrain = PracticeQuestionBrain();
+import '../../question_category/ui/question_category_screen.dart';
 
 class PracticeScreen extends StatefulWidget {
   const PracticeScreen({super.key});
@@ -15,6 +15,8 @@ class PracticeScreen extends StatefulWidget {
 class _PracticeScreenState extends State<PracticeScreen> {
   int? correctOptionIndex;
 
+  final QuestionCategoryBloc questionCategoryBloc = QuestionCategoryBloc();
+
   void highlightCorrectAnswer() {
     final correctOption = practiceQuestionBrain.getCorrectOption();
     setState(() {
@@ -24,29 +26,13 @@ class _PracticeScreenState extends State<PracticeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           //Question Text
-          Expanded(
-            flex: 4,
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Center(
-                child: Text(
-                  practiceQuestionBrain.getQuestionText(),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 25.0,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          buildQuestionText(),
 
           //option 1
           buildOptions(0),
@@ -61,74 +47,101 @@ class _PracticeScreenState extends State<PracticeScreen> {
           buildOptions(3),
 
           //show Answer button
-          Padding(
-            padding: kButtonPadding,
-            child: TextButton(
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.green,
-              ),
-              onPressed: () {
-                highlightCorrectAnswer();
-              },
-              child: const Text(
-                'Show Answer',
-                style: TextStyle(color: Colors.black87),
-              ),
-            ),
-          ),
+          buildShowAnswerButton(),
 
           //next question button
-          Padding(
-            padding: kButtonPadding,
-            child: TextButton(
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.green,
-              ),
-              child: const Text(
-                'Next Question',
-                style: TextStyle(color: Colors.black87),
-              ),
-              onPressed: () {
-                setState(() {
-                  if (practiceQuestionBrain.isFinished()) {
-                    Alert(
-                      style:
-                          const AlertStyle(backgroundColor: kActiveCardColor),
-                      context: context,
-                      type: AlertType.info,
-                      title: "FINISHED!",
-                      desc: "You have reached the end of the quiz.",
-                      buttons: [
-                        DialogButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          width: 120,
-                          child: const Text(
-                            "CONTINUE",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        )
-                      ],
-                    ).show();
-
-                    practiceQuestionBrain.reset();
-                  } else {
-                    correctOptionIndex = null;
-                    practiceQuestionBrain.nextPracticeQuestion();
-                  }
-                });
-              },
-            ),
-          ),
+          buildNextQuestionButton(context),
         ],
       ),
     );
+  }
+
+  Expanded buildQuestionText() {
+    return Expanded(
+          flex: 4,
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Center(
+              child: Text(
+                practiceQuestionBrain.getQuestionText(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 25.0,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        );
+  }
+
+  Padding buildShowAnswerButton() {
+    return Padding(
+          padding: kButtonPadding,
+          child: TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.green,
+            ),
+            onPressed: () {
+              highlightCorrectAnswer();
+            },
+            child: const Text(
+              'Show Answer',
+              style: TextStyle(color: Colors.black87),
+            ),
+          ),
+        );
+  }
+
+  Padding buildNextQuestionButton(BuildContext context) {
+    return Padding(
+          padding: kButtonPadding,
+          child: TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.green,
+            ),
+            child: const Text(
+              'Next Question',
+              style: TextStyle(color: Colors.black87),
+            ),
+            onPressed: () {
+              setState(() {
+                if (practiceQuestionBrain.isFinished()) {
+                  Alert(
+                    style:
+                        const AlertStyle(backgroundColor: kActiveCardColor),
+                    context: context,
+                    type: AlertType.info,
+                    title: "FINISHED!",
+                    desc: "You have reached the end of the quiz.",
+                    buttons: [
+                      DialogButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        width: 120,
+                        child: const Text(
+                          "CONTINUE",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      )
+                    ],
+                  ).show();
+
+                  practiceQuestionBrain.reset();
+                } else {
+                  correctOptionIndex = null;
+                  practiceQuestionBrain.nextPracticeQuestion();
+                }
+              });
+            },
+          ),
+        );
   }
 
   Expanded buildOptions(int optionNumberIndex) {

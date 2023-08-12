@@ -5,7 +5,7 @@ import 'package:drive_test_pal/practice_question_brain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-PracticeQuestionBrain practiceQuestionBrain = PracticeQuestionBrain();
+final PracticeQuestionBrain practiceQuestionBrain = PracticeQuestionBrain();
 class QuestionCategoryScreen extends StatefulWidget {
   const QuestionCategoryScreen({super.key});
 
@@ -30,6 +30,8 @@ class _QuestionCategoryScreenState extends State<QuestionCategoryScreen> {
       buildWhen: (previous, current) => current is! QuestionCategoryActionState,
       listener: (context, state) {
         if (state is QCNavigateToPracticeQuestionScreenActionState) {
+          print(state.selectedQuestionType);
+          practiceQuestionBrain.setQuestionType(state.selectedQuestionType);
           //TODO: Navigate to the PracticeQuestion Screen
           Navigator.push(
             context,
