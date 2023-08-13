@@ -5,7 +5,7 @@ import 'package:drive_test_pal/features/quiz/ui/quiz.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
-  static const String homePage = '/';
+  static const String homePage = '/home';
   static const String questionCategoryPage = '/questionCategory';
   static const String quizPage = '/quiz';
   static const String practicePage = '/practice';
