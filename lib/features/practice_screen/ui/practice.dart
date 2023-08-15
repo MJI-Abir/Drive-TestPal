@@ -1,3 +1,4 @@
+import 'package:drive_test_pal/features/practice_screen/widgets/question_text_widget.dart';
 import 'package:drive_test_pal/features/question_category/bloc/question_category_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -14,7 +15,6 @@ class PracticeScreen extends StatefulWidget {
 
 class _PracticeScreenState extends State<PracticeScreen> {
   int? correctOptionIndex;
-
   final QuestionCategoryBloc questionCategoryBloc = QuestionCategoryBloc();
 
   void highlightCorrectAnswer() {
@@ -32,7 +32,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           //Question Text
-          buildQuestionText(),
+          const QuestionTextWidget(),
           //option 1
           buildOptions(0),
           //option 2
@@ -50,32 +50,13 @@ class _PracticeScreenState extends State<PracticeScreen> {
     );
   }
 
-  Expanded buildQuestionText() {
-    return Expanded(
-          flex: 4,
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Center(
-              child: Text(
-                practiceQuestionBrain.getQuestionText(),
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 25.0,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ),
-        );
-  }
-
   Padding buildShowAnswerButton() {
     return Padding(
           padding: kButtonPadding,
           child: TextButton(
             style: TextButton.styleFrom(
               foregroundColor: Colors.white,
-              backgroundColor: Colors.green,
+              backgroundColor: Colors.teal,
             ),
             onPressed: () {
               highlightCorrectAnswer();
@@ -94,7 +75,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
           child: TextButton(
             style: TextButton.styleFrom(
               foregroundColor: Colors.white,
-              backgroundColor: Colors.green,
+              backgroundColor: Colors.teal,
             ),
             child: const Text(
               'Next Question',

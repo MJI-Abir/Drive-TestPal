@@ -4,8 +4,10 @@ import 'package:drive_test_pal/data/question_data.dart';
 import 'enums/enum.dart';
 
 QuestionData questionData = QuestionData();
+
 class PracticeQuestionBrain {
   int _questionId = 0;
+
   QuestionTypeEnum _questionType = QuestionTypeEnum.allQuestions;
 
   void setQuestionType(QuestionTypeEnum questionType) {
@@ -14,12 +16,12 @@ class PracticeQuestionBrain {
 
   List<PracticeQuestion> getQuestionsWithCorrespondingQuestionType(
       QuestionTypeEnum questionType) {
-        return
-        questionType == QuestionTypeEnum.allQuestions? QuestionData.questionBank :QuestionData.questionBank
-        .where((question) => question.questionType == _questionType)
-        .toList();
+    return questionType == QuestionTypeEnum.allQuestions
+        ? QuestionData.questionBank
+        : QuestionData.questionBank
+            .where((question) => question.questionType == _questionType)
+            .toList();
   }
-
 
   void nextPracticeQuestion() {
     if (_questionId <
