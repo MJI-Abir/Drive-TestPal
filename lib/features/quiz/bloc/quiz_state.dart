@@ -15,12 +15,20 @@ class QuizLoadingSuccessState extends QuizState {
   QuizLoadingSuccessState({
     required this.selectedQuestions,
   });
+}
+
+class QuizErrorState extends QuizState{
 
 }
 
-class QuizErrorState extends QuizState{}
-
-class QuizOptionSelectedActionState extends QuizActionState{}
+class QuizOptionSelectedActionState extends QuizActionState {
+  final int selectedOptionIndex;
+  final bool isCorrectAnswer;
+  QuizOptionSelectedActionState({
+    required this.selectedOptionIndex,
+    required this.isCorrectAnswer,
+  });
+}
 
 class QuizCorrectAnswerAndExplanationDisplayedActionState extends QuizActionState{}
 

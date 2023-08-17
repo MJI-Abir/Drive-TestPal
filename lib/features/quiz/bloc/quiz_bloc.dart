@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:bloc/bloc.dart';
 import 'package:drive_test_pal/components/practice_question.dart';
 import 'package:drive_test_pal/data/question_data.dart';
+import 'package:drive_test_pal/features/quiz/ui/quiz.dart';
 import 'package:meta/meta.dart';
 
 part 'quiz_event.dart';
@@ -13,12 +14,13 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   Random random = Random();
   QuizBloc() : super(QuizInitialState()) {
     on<QuizInitialEvent>(quizInitialEvent);
-    on<QuizOptionSelectedEvent>(quizOptionSelectedActionState);
+    on<QuizOptionSelectedEvent>(quizOptionSelectedEvent);
     on<QuizContinueButtonClickedEvent>(quizContinueButtonClickedEvent);
     on<QuizNextQuizButtonClickedEvent>(quizNextQuizButtonClickedEvent);
   }
 
-  FutureOr<void> quizInitialEvent(QuizInitialEvent event, Emitter<QuizState> emit) async {
+  FutureOr<void> quizInitialEvent(
+      QuizInitialEvent event, Emitter<QuizState> emit) async {
     emit(QuizLoadingState());
     //TODO: generate list of random practiceQuestions
     QuestionData.questionBank.shuffle();
@@ -27,12 +29,17 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     emit(QuizLoadingSuccessState(selectedQuestions: selectedQuestions));
   }
 
-  FutureOr<void> quizOptionSelectedActionState(QuizOptionSelectedEvent event, Emitter<QuizState> emit) {
+  FutureOr<void> quizOptionSelectedEvent(
+      QuizOptionSelectedEvent event, Emitter<QuizState> emit) {
+    final correctOptionIndex = quizBrain.getCorrectOptionIndex();
+    emit(QuizOptionSelectedActionState(
+        selectedOptionIndex: event.selectedOptionIndex,
+        isCorrectAnswer: event.selectedOptionIndex == correctOptionIndex));
   }
 
-  FutureOr<void> quizContinueButtonClickedEvent(QuizContinueButtonClickedEvent event, Emitter<QuizState> emit) {
-  }
+  FutureOr<void> quizContinueButtonClickedEvent(
+      QuizContinueButtonClickedEvent event, Emitter<QuizState> emit) {}
 
-  FutureOr<void> quizNextQuizButtonClickedEvent(QuizNextQuizButtonClickedEvent event, Emitter<QuizState> emit) {
-  }
+  FutureOr<void> quizNextQuizButtonClickedEvent(
+      QuizNextQuizButtonClickedEvent event, Emitter<QuizState> emit) {}
 }

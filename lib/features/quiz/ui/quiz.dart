@@ -6,19 +6,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:drive_test_pal/constants/constants.dart';
 import 'package:drive_test_pal/features/quiz/bloc/quiz_bloc.dart';
 
-import '../../question_category/ui/question_category_screen.dart';
+late QuizBrain quizBrain;
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
-
 
   @override
   State<Quiz> createState() => _QuizState();
 }
 
 class _QuizState extends State<Quiz> {
-  late QuizBrain quizBrain;
-  
   final QuizBloc quizBloc = QuizBloc();
 
   @override
@@ -27,33 +24,31 @@ class _QuizState extends State<Quiz> {
     super.initState();
   }
 
+  int? selectedOptionIndex;
+  bool isCorrectAnswer = false;
   int? correctOptionIndex;
   bool isContinueButtonVisible = true;
-
-  void highlightSelectedAnswer() {
-    final correctOption = practiceQuestionBrain.getCorrectOption();
-    setState(() {
-      correctOptionIndex = correctOption - 1;
-    });
-  }
+  bool isOptionSelected = false;
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<QuizBloc, QuizState>(
       bloc: quizBloc,
-      listenWhen: (previous, current) => current is QuizActionState,
-      buildWhen: (previous, current) => current is! QuizActionState,
+      // listenWhen: (previous, current) => current is QuizActionState,
+      // buildWhen: (previous, current) => current is! QuizActionState,
       listener: (context, state) {},
       builder: (context, state) {
         switch (state.runtimeType) {
           case QuizLoadingState:
             return const Scaffold(
-                body: Center(
-              child: CircularProgressIndicator(),
-            ));
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
           case QuizLoadingSuccessState:
-          final successState = state as QuizLoadingSuccessState;
-          quizBrain = QuizBrain(selectedQuestions: successState.selectedQuestions);
+            final successState = state as QuizLoadingSuccessState;
+            quizBrain =
+                QuizBrain(selectedQuestions: successState.selectedQuestions);
             return Scaffold(
               body: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -61,60 +56,96 @@ class _QuizState extends State<Quiz> {
                 children: <Widget>[
                   //Question Text
                   buildQuestionText(),
-                  //option 1
-                  buildOptions(0),
-                  //option 2
-                  buildOptions(1),
-                  //option 3
-                  buildOptions(2),
-                  //option 4
-                  buildOptions(3),
+
+                  //Options
+                  for (int i = 0; i < quizBrain.getOptions().length; i++)
+                    buildOptions(i, successState),
 
                   if (isContinueButtonVisible) buildContinueButton(),
                 ],
               ),
             );
+
+          case QuizOptionSelectedActionState:
+            final quizOptionSelectedActionState =
+                state as QuizOptionSelectedActionState;
+            isOptionSelected = true;
+            //       final explanation = state.explanation;
+            // final updatedScore = state.updatedScore;
+
+            return Scaffold(
+              // Build your entire screen with updated information
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  buildQuestionText(),
+                  // Build your UI components with the updated information
+                  // Text(explanation), // Display explanation
+                  // Text("Score: $updatedScore"), // Display updated score
+
+                  // Build options using the updated color
+                  for (int i = 0; i < quizBrain.getOptions().length; i++)
+                    buildOptions(i, quizOptionSelectedActionState),
+
+                  buildContinueButton(),
+
+                  // Continue button or other UI components
+                ],
+              ),
+            );
           default:
-            return const SizedBox();
+            return const SizedBox(
+              child: Text('helllllllllo mammmmmmmaaaaaaaa. ami default'),
+            );
         }
       },
     );
   }
 
-  Expanded buildQuestionText(){
+  Expanded buildQuestionText() {
     return Expanded(
-          flex: 4,
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Center(
-              child: Text(
-                quizBrain.getQuestionText(),
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 25.0,
-                  color: Colors.white,
-                ),
-              ),
+      flex: 4,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Center(
+          child: Text(
+            quizBrain.getQuestionText(),
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 25.0,
+              color: Colors.white,
             ),
           ),
-        );
+        ),
+      ),
+    );
   }
 
-  Expanded buildOptions(int optionNumberIndex) {
-    final isCorrectOption = correctOptionIndex == optionNumberIndex;
-
+  Expanded buildOptions(int optionNumberIndex, QuizState state) {
+    final Color optionColor;
+    if (state is QuizOptionSelectedActionState) {
+      optionColor = optionNumberIndex == state.selectedOptionIndex
+          ? ((state).isCorrectAnswer ? Colors.green : Colors.red)
+          : Colors.transparent;
+    } else {
+      optionColor = Colors.transparent;
+    }
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: GestureDetector(
-          onTap: () {
-            print('option $optionNumberIndex is clicked!');
-            highlightSelectedAnswer();
-          },
+          onTap: isOptionSelected
+              ? null
+              : () {
+                  quizBloc.add(QuizOptionSelectedEvent(
+                      selectedOptionIndex: optionNumberIndex,
+                      correctOptionIndex: quizBrain.getCorrectOptionIndex()));
+                },
           child: Container(
             padding: const EdgeInsets.all(5.0),
             decoration: BoxDecoration(
-              color: isCorrectOption ? Colors.green : Colors.transparent,
+              color: optionColor,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Text(

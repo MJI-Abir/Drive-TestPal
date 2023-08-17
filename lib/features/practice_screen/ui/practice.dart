@@ -52,71 +52,70 @@ class _PracticeScreenState extends State<PracticeScreen> {
 
   Padding buildShowAnswerButton() {
     return Padding(
-          padding: kButtonPadding,
-          child: TextButton(
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.white,
-              backgroundColor: Colors.teal,
-            ),
-            onPressed: () {
-              highlightCorrectAnswer();
-            },
-            child: const Text(
-              'Show Answer',
-              style: TextStyle(color: Colors.black87),
-            ),
-          ),
-        );
+      padding: kButtonPadding,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.teal,
+        ),
+        onPressed: () {
+          highlightCorrectAnswer();
+        },
+        child: const Text(
+          'Show Answer',
+          style: TextStyle(color: Colors.black87),
+        ),
+      ),
+    );
   }
 
   Padding buildNextQuestionButton(BuildContext context) {
     return Padding(
-          padding: kButtonPadding,
-          child: TextButton(
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.white,
-              backgroundColor: Colors.teal,
-            ),
-            child: const Text(
-              'Next Question',
-              style: TextStyle(color: Colors.black87),
-            ),
-            onPressed: () {
-              setState(() {
-                if (practiceQuestionBrain.isFinished()) {
-                  Alert(
-                    style:
-                        const AlertStyle(backgroundColor: kActiveCardColor),
-                    context: context,
-                    type: AlertType.info,
-                    title: "FINISHED!",
-                    desc: "You have reached the end of the quiz.",
-                    buttons: [
-                      DialogButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        width: 120,
-                        child: const Text(
-                          "CONTINUE",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    ],
-                  ).show();
+      padding: kButtonPadding,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.teal,
+        ),
+        child: const Text(
+          'Next Question',
+          style: TextStyle(color: Colors.black87),
+        ),
+        onPressed: () {
+          setState(() {
+            if (practiceQuestionBrain.isFinished()) {
+              Alert(
+                style: const AlertStyle(backgroundColor: kActiveCardColor),
+                context: context,
+                type: AlertType.info,
+                title: "FINISHED!",
+                desc: "You have reached the end of the quiz.",
+                buttons: [
+                  DialogButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    width: 120,
+                    child: const Text(
+                      "CONTINUE",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              ).show();
 
-                  practiceQuestionBrain.reset();
-                } else {
-                  correctOptionIndex = null;
-                  practiceQuestionBrain.nextPracticeQuestion();
-                }
-              });
-            },
-          ),
-        );
+              practiceQuestionBrain.reset();
+            } else {
+              practiceQuestionBrain.nextPracticeQuestion();
+            }
+            correctOptionIndex = null;
+          });
+        },
+      ),
+    );
   }
 
   Expanded buildOptions(int optionNumberIndex) {
