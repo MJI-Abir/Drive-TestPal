@@ -18,13 +18,17 @@ class OptionsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(isOptionSelected);
     final Color optionColor;
     if (state is QuizOptionSelectedActionState) {
       final optionSelectedState = state as QuizOptionSelectedActionState;
-      optionColor = optionNumberIndex == optionSelectedState.selectedOptionIndex
-          ? (optionSelectedState.isCorrectAnswer ? Colors.green : Colors.red)
-          : Colors.transparent;
+
+      optionColor = optionNumberIndex == quizBrain.getCorrectOptionIndex()
+          ? Colors.green
+          : (optionNumberIndex == optionSelectedState.selectedOptionIndex
+              ? (optionSelectedState.isCorrectAnswer
+                  ? Colors.green
+                  : Colors.red)
+              : Colors.transparent);
     } else {
       optionColor = Colors.transparent;
     }

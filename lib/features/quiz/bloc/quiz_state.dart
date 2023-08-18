@@ -21,16 +21,21 @@ class QuizErrorState extends QuizState{
 
 }
 
+class QuizFinishedState extends QuizState{}
+
 class QuizOptionSelectedActionState extends QuizActionState {
   final int selectedOptionIndex;
   final bool isCorrectAnswer;
+  final int updatedScore;
+  final String explanation;
   QuizOptionSelectedActionState({
     required this.selectedOptionIndex,
     required this.isCorrectAnswer,
+    required this.updatedScore,
+    required this.explanation,
   });
 }
 
 class QuizCorrectAnswerAndExplanationDisplayedActionState extends QuizActionState{}
 
 class QuizGoToNextQuizActionState extends QuizActionState{}
-

@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:drive_test_pal/config/routes/app_routes.dart';
 import 'package:drive_test_pal/features/quiz/components/loading_body.dart';
 import 'package:drive_test_pal/features/quiz/components/options_widget.dart';
 import 'package:drive_test_pal/features/quiz/components/question_text_widget.dart';
@@ -39,7 +40,11 @@ class _QuizState extends State<Quiz> {
       bloc: quizBloc,
       // listenWhen: (previous, current) => current is QuizActionState,
       // buildWhen: (previous, current) => current is! QuizActionState,
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is QuizFinishedState) {
+          Navigator.pushNamed(context, AppRoutes.quizResultPage);
+        }
+      },
       builder: (context, state) {
         switch (state.runtimeType) {
           case QuizLoadingState:
@@ -53,7 +58,7 @@ class _QuizState extends State<Quiz> {
                 QuizBrain(selectedQuestions: successState.selectedQuestions);
             return Scaffold(
               body: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   //Question Text
@@ -90,7 +95,7 @@ class _QuizState extends State<Quiz> {
             quizBrain.nextQuestion();
 
             return buildQuizScreen(quizGoToNextQuizActionState);
-
+//TODO: problem
           default:
             return const SizedBox(
               child: Text('helllllllllo mammmmmmmaaaaaaaa. ami default'),
@@ -100,14 +105,14 @@ class _QuizState extends State<Quiz> {
     );
   }
 
-  Scaffold buildQuizScreen(
-      QuizState quizState) {
+  Scaffold buildQuizScreen(QuizState quizState) {
     return Scaffold(
       // Build your entire screen with updated information
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          Text('score'),
           const QuestionTextWidget(),
           // Build your UI components with the updated information
           // Text(explanation), // Display explanation
@@ -120,7 +125,7 @@ class _QuizState extends State<Quiz> {
                 quizBloc: quizBloc,
                 optionNumberIndex: i,
                 state: quizState),
-
+          Text('Explanation'),
           const SizedBox(height: 150),
 
           if (isContinueButtonVisible) buildContinueButton(),
@@ -141,12 +146,6 @@ class _QuizState extends State<Quiz> {
         ),
         onPressed: () {
           quizBloc.add(QuizContinueButtonClickedEvent());
-          setState(() {
-            isOptionSelected = false;
-            isContinueButtonVisible = false;
-            quizBrain.nextQuestion();
-          });
-          print('Continue Button clicked!');
         },
         child: const Text(
           'Continue',

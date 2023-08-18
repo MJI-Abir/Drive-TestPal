@@ -29,8 +29,8 @@ class QuizBrain {
     return selectedQuestions[_randomQuestionId].questionAnswer - 1;
   }
 
-  // bool isQuizFinished(){
-
-  // }
+  bool isQuizFinished(){
+    return _randomQuestionId >= (selectedQuestions.length - 1) ? true: false;
+  }
 
 }
