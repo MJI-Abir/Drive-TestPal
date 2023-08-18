@@ -6,13 +6,15 @@ QuestionData questionData = QuestionData();
 class QuizBrain {
   final List<PracticeQuestion> selectedQuestions;
 
-  final int _randomQuestionId = 0;
+  int _randomQuestionId = 0;
   QuizBrain({
     required this.selectedQuestions
   });
 
-  void nextRandomQuestion(){
-
+  void nextQuestion(){
+    if(_randomQuestionId < selectedQuestions.length){
+      _randomQuestionId++;
+    }
   }
 
   String getQuestionText(){

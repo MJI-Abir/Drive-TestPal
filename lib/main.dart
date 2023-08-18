@@ -15,7 +15,7 @@ class DriveTestPal extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         primaryColor: kAppThemeColor,
-        scaffoldBackgroundColor: kAppThemeColor,
+        scaffoldBackgroundColor: Colors.black,
       ),
       initialRoute: AppRoutes.homePage,
       routes: AppRoutes.routes,

@@ -15,6 +15,10 @@ class QuizOptionSelectedEvent extends QuizEvent {
   });
 }
 
-class QuizContinueButtonClickedEvent extends QuizEvent{}
+class QuizContinueButtonClickedEvent extends QuizEvent{
+  final QuizBrain quizBrain;
+
+  QuizContinueButtonClickedEvent(this.quizBrain);
+}
 
 class QuizNextQuizButtonClickedEvent extends QuizEvent{}

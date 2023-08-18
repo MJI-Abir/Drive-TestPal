@@ -28,34 +28,35 @@ class Home extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kAppBarColor,
-        centerTitle: true,
+        // centerTitle: true,
         title: const Text(
           'DRIVE TEST PAL',
           style: kTitleTextStyle,
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              buildKey(FontAwesomeIcons.listCheck, 'Start Test', AppRoutes.quizPage, context),
-              buildKey(FontAwesomeIcons.book, 'Flash Cards', AppRoutes.questionCategoryPage, context),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              buildKey(FontAwesomeIcons.circleInfo, 'Info', '/', context),
-              buildKey(FontAwesomeIcons.gear, 'Settings', '/', context),
-            ],
-          ),
-          Row(
-            children: <Widget>[
-              buildKey(FontAwesomeIcons.handHoldingDollar, 'Upgrade', '/', context),
-              buildKey(FontAwesomeIcons.book, 'Free Stuff', '/', context),
-            ],
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                buildKey(FontAwesomeIcons.listCheck, 'Start Test', AppRoutes.quizPage, context),
+                buildKey(FontAwesomeIcons.book, 'Flash Cards', AppRoutes.questionCategoryPage, context),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                buildKey(FontAwesomeIcons.circleInfo, 'Info', '/', context),
+                buildKey(FontAwesomeIcons.gear, 'Settings', '/', context),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                buildKey(FontAwesomeIcons.handHoldingDollar, 'Upgrade', '/', context),
+                buildKey(FontAwesomeIcons.book, 'Free Stuff', '/', context),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

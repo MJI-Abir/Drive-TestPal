@@ -1,4 +1,5 @@
 import 'package:drive_test_pal/config/routes/app_routes.dart';
+import 'package:drive_test_pal/constants/constants.dart';
 import 'package:drive_test_pal/features/question_category/bloc/question_category_bloc.dart';
 import 'package:drive_test_pal/features/question_category/ui/question_category_tile.dart';
 import 'package:drive_test_pal/practice_question_brain.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 final PracticeQuestionBrain practiceQuestionBrain = PracticeQuestionBrain();
+
 class QuestionCategoryScreen extends StatefulWidget {
   const QuestionCategoryScreen({super.key});
 
@@ -38,13 +40,23 @@ class _QuestionCategoryScreenState extends State<QuestionCategoryScreen> {
         switch (state.runtimeType) {
           case QCLoadingState:
             return const Scaffold(
-                body: Center(
-              child: CircularProgressIndicator(),
-            ));
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
 
           case QCLoadingSuccessState:
             final successState = state as QCLoadingSuccessState;
             return Scaffold(
+              appBar: AppBar(
+                backgroundColor: kAppBarColor,
+                // centerTitle: true,
+                title: const Text(
+                  
+                  'Question categories',
+                  style: kTitleTextStyle,
+                ),
+              ),
               floatingActionButton: FloatingActionButton(
                 backgroundColor: Colors.blueAccent,
                 onPressed: () {

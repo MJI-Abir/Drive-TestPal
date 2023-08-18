@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 const kAppThemeColor = Color(0xFF08272c);
-const kActiveCardColor = Color(0xFF0c353b);
+const kActiveCardColor = Color(0xFF1c1e1f);
 const kInactiveCardColor = Color(0x100c353b);
 const kBottomContainerColor = Color(0xFFEB1555);
-const kAppBarColor = Color(0xFF08272c);
+const kAppBarColor = Colors.transparent;
 
-const kBorderRadius = BorderRadius.all(Radius.circular(8.0));
+const kBorderRadius = BorderRadius.all(Radius.circular(10.0));
 const kLabelTextStyle = TextStyle(
   fontSize: 18.0,
-  color: Colors.black87,
+  color: Colors.white,
   fontWeight: FontWeight.bold,
 );
 
@@ -24,7 +24,7 @@ const kLargeButtonTextStyle = TextStyle(
 );
 
 const kTitleTextStyle = TextStyle(
-  fontSize: 25.0,
+  fontSize: 20.0,
   fontWeight: FontWeight.bold,
 );
 

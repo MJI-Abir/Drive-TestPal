@@ -25,7 +25,7 @@ class QuestionCatTile extends StatelessWidget {
         contentPadding: const EdgeInsets.all(5),
         iconColor: Colors.white,
         textColor: Colors.white,
-        tileColor: Colors.black,
+        tileColor: kActiveCardColor,
         style: ListTileStyle.list,
         dense: true,
         child: ListTile(
