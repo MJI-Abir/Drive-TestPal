@@ -5,7 +5,6 @@ import 'package:bloc/bloc.dart';
 import 'package:drive_test_pal/components/practice_question.dart';
 import 'package:drive_test_pal/data/question_data.dart';
 import 'package:drive_test_pal/features/quiz/ui/quiz.dart';
-import 'package:drive_test_pal/quiz_brain.dart';
 import 'package:meta/meta.dart';
 
 part 'quiz_event.dart';
@@ -40,8 +39,8 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
 
   FutureOr<void> quizContinueButtonClickedEvent(
       QuizContinueButtonClickedEvent event, Emitter<QuizState> emit) {
-        event.quizBrain.nextQuestion();
-        // emit(QuizGoToNextQuizActionState());
+        // event.quizBrain.nextQuestion();
+        emit(QuizGoToNextQuizActionState());
       }
 
   FutureOr<void> quizNextQuizButtonClickedEvent(

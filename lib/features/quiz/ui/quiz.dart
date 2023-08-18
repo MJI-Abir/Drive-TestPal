@@ -61,7 +61,11 @@ class _QuizState extends State<Quiz> {
 
                   //Options
                   for (int i = 0; i < quizBrain.getOptions().length; i++)
-                    OptionsWidget(isOptionSelected: isOptionSelected, quizBloc: quizBloc, optionNumberIndex: i, state: successState),
+                    OptionsWidget(
+                        isOptionSelected: isOptionSelected,
+                        quizBloc: quizBloc,
+                        optionNumberIndex: i,
+                        state: successState),
 
                   if (isContinueButtonVisible) buildContinueButton(),
                 ],
@@ -76,29 +80,16 @@ class _QuizState extends State<Quiz> {
 
             //       final explanation = state.explanation;
             // final updatedScore = state.updatedScore;
-            return Scaffold(
-              // Build your entire screen with updated information
-              body: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  const QuestionTextWidget(),
-                  // Build your UI components with the updated information
-                  // Text(explanation), // Display explanation
-                  // Text("Score: $updatedScore"), // Display updated score
+            return buildQuizScreen(quizOptionSelectedActionState);
 
-                  // Build options using the updated color
-                  for (int i = 0; i < quizBrain.getOptions().length; i++)
-                    OptionsWidget(isOptionSelected: isOptionSelected, quizBloc: quizBloc, optionNumberIndex: i, state: quizOptionSelectedActionState),
+          case QuizGoToNextQuizActionState:
+            final quizGoToNextQuizActionState =
+                state as QuizGoToNextQuizActionState;
+            isOptionSelected = false;
+            isContinueButtonVisible = false;
+            quizBrain.nextQuestion();
 
-                  const SizedBox(height: 150),
-
-                  if (isContinueButtonVisible) buildContinueButton(),
-
-                  // Continue button or other UI components
-                ],
-              ),
-            );
+            return buildQuizScreen(quizGoToNextQuizActionState);
 
           default:
             return const SizedBox(
@@ -106,6 +97,37 @@ class _QuizState extends State<Quiz> {
             );
         }
       },
+    );
+  }
+
+  Scaffold buildQuizScreen(
+      QuizState quizState) {
+    return Scaffold(
+      // Build your entire screen with updated information
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          const QuestionTextWidget(),
+          // Build your UI components with the updated information
+          // Text(explanation), // Display explanation
+          // Text("Score: $updatedScore"), // Display updated score
+
+          // Build options using the updated color
+          for (int i = 0; i < quizBrain.getOptions().length; i++)
+            OptionsWidget(
+                isOptionSelected: isOptionSelected,
+                quizBloc: quizBloc,
+                optionNumberIndex: i,
+                state: quizState),
+
+          const SizedBox(height: 150),
+
+          if (isContinueButtonVisible) buildContinueButton(),
+
+          // Continue button or other UI components
+        ],
+      ),
     );
   }
 
@@ -118,6 +140,7 @@ class _QuizState extends State<Quiz> {
           backgroundColor: Colors.teal,
         ),
         onPressed: () {
+          quizBloc.add(QuizContinueButtonClickedEvent());
           setState(() {
             isOptionSelected = false;
             isContinueButtonVisible = false;
@@ -133,7 +156,3 @@ class _QuizState extends State<Quiz> {
     );
   }
 }
-
-
-
-
