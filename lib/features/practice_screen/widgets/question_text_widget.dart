@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../question_category/ui/question_category_screen.dart';
 
@@ -8,20 +9,21 @@ class QuestionTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-          flex: 4,
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Center(
-              child: Text(
-                practiceQuestionBrain.getQuestionText(),
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 25.0,
-                  color: Colors.white,
-                ),
+      flex: 2,
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Center(
+          child: Text(
+            practiceQuestionBrain.getQuestionText(),
+            style: GoogleFonts.roboto(
+              textStyle: const TextStyle(
+                fontSize: 20.0,
+                color: Colors.black,
               ),
             ),
           ),
-        );
+        ),
+      ),
+    );
   }
 }

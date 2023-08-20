@@ -1,3 +1,4 @@
+import 'package:drive_test_pal/constants/constants.dart';
 import 'package:drive_test_pal/features/quiz/bloc/quiz_bloc.dart';
 import 'package:drive_test_pal/features/quiz/ui/quiz.dart';
 import 'package:flutter/material.dart';
@@ -30,11 +31,13 @@ class OptionsWidget extends StatelessWidget {
                   : Colors.red)
               : Colors.transparent);
     } else {
-      optionColor = Colors.transparent;
+      optionColor = Colors.teal;
     }
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Card(
+        elevation: kDefaultElevation,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: GestureDetector(
           onTap: isOptionSelected
               ? null
@@ -43,23 +46,18 @@ class OptionsWidget extends StatelessWidget {
                       selectedOptionIndex: optionNumberIndex,
                       correctOptionIndex: quizBrain.getCorrectOptionIndex()));
                 },
-          child: Card(
-            elevation: 4,
-            child: Container(
-              // padding: const EdgeInsets.all(5.0),
-              decoration: BoxDecoration(
-                color: optionColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  quizBrain.getOptions()[optionNumberIndex],
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 15.0,
-                  ),
-                ),
+          child: Container(
+            padding: const EdgeInsets.all(10.0),
+            alignment: Alignment.centerLeft,
+            decoration: BoxDecoration(
+              color: optionColor,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Text(
+              quizBrain.getOptions()[optionNumberIndex],
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 15.0,
               ),
             ),
           ),

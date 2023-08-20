@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const kDefaultElevation = 6.0;
+
 const kAppThemeColor = Color(0xFF08272c);
 const kActiveCardColor = Color(0xFF1c1e1f);
 const kInactiveCardColor = Color(0x100c353b);
@@ -29,7 +31,7 @@ const kTitleTextStyle = TextStyle(
 );
 
 const kQuestionCatTitleStyle = TextStyle(
-  fontSize: 12.0,
+  // fontSize: 12.0,
   fontWeight: FontWeight.bold,
 );
 
@@ -44,7 +46,14 @@ const kResultTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+const kQuestionTextStyle = TextStyle(
+  fontSize: 15.0,
+  color: Colors.black,
+);
+
 const kButtonPadding = EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0);
+
+const kDefaultPadding = EdgeInsets.all(10);
 
 const kBMITextStyle = TextStyle(
   fontSize: 100.0,

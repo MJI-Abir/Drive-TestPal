@@ -1,5 +1,7 @@
+import 'package:drive_test_pal/constants/constants.dart';
 import 'package:drive_test_pal/features/quiz/ui/quiz.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class QuestionTextWidget extends StatelessWidget {
   const QuestionTextWidget({
@@ -8,19 +10,13 @@ class QuestionTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 2,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Center(
-          child: Text(
-            quizBrain.getQuestionText(),
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 25.0,
-              color: Colors.white,
-            ),
-          ),
+    return Padding(
+      padding: kDefaultPadding,
+      child: Text(
+        quizBrain.getQuestionText(),
+        textAlign: TextAlign.left,
+        style: GoogleFonts.robotoMono(
+          textStyle: kQuestionTextStyle,
         ),
       ),
     );

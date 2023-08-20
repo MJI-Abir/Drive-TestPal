@@ -76,43 +76,50 @@ class _QuizState extends State<Quiz> {
             return buildQuizScreen(quizGoToNextQuizActionState);
 //TODO: problem
           default:
-            return const SizedBox(
-              child: Text('helllllllllo mammmmmmmaaaaaaaa. ami default'),
-            );
+            return const SizedBox();
         }
       },
     );
   }
 
-  Scaffold buildQuizScreen(QuizState quizState) {
-    return Scaffold(
-      // Build your entire screen with updated information
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          const QuestionTextWidget(),
-          for (int i = 0; i < quizBrain.getOptions().length; i++)
-            OptionsWidget(
-                isOptionSelected: isOptionSelected,
-                quizBloc: quizBloc,
-                optionNumberIndex: i,
-                state: quizState),
+  SafeArea buildQuizScreen(QuizState quizState) {
+    return SafeArea(
+      child: Scaffold(
 
-          if (quizState is QuizOptionSelectedActionState)
-            Column(
-              children: [
-                Text('${quizState.updatedScore}'),
-                Text(quizState.explanation),
+        body: Padding(
+          padding: kDefaultPadding,
+          child: Container(
+            constraints: const BoxConstraints(minHeight: 0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.blue[100],
+            ),
+            child: Column(
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                const QuestionTextWidget(),
+                for (int i = 0; i < quizBrain.getOptions().length; i++)
+                  OptionsWidget(
+                      isOptionSelected: isOptionSelected,
+                      quizBloc: quizBloc,
+                      optionNumberIndex: i,
+                      state: quizState),
+          
+                if (quizState is QuizOptionSelectedActionState)
+                  Column(
+                    children: [
+                      Text('${quizState.updatedScore}'),
+                      Text(quizState.explanation),
+                    ],
+                  ),
+          
+                if (isContinueButtonVisible) buildContinueButton(),
+          
               ],
             ),
-
-          const SizedBox(height: 150),
-
-          if (isContinueButtonVisible) buildContinueButton(),
-
-          // Continue button or other UI components
-        ],
+          ),
+        ),
       ),
     );
   }

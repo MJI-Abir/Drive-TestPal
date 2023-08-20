@@ -28,32 +28,37 @@ class QuestionCatTile extends StatelessWidget {
         tileColor: kActiveCardColor,
         style: ListTileStyle.list,
         dense: true,
-        child: ListTile(
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                questionCategoryModel.title,
-                style: kQuestionCatTitleStyle,
-              ),
-              const SizedBox(height: 10.0),
-              Text(
-                
-                'Total: ${questionCategoryModel.total}, Not Attempted: ${questionCategoryModel.notAttempted}',
-                style: kQuestionCatSubTitleStyle,
-              ),
-              Text(
-                'Incorrect: ${questionCategoryModel.total - questionCategoryModel.correct}, Correct: ${questionCategoryModel.correct}',
-                style: kQuestionCatSubTitleStyle,
-              ),
-              kDividerStyle,
-              const SizedBox(height: 10),
-            ],
+        child: Card(
+          elevation: 6,
+          // margin: const EdgeInsets.all(10),
+          child: ListTile(
+            leading: const CircleAvatar(
+              backgroundColor: Colors.purple,
+              child: Icon(FontAwesomeIcons.addressBook)),
+            title: Text(
+                  questionCategoryModel.title,
+                  style: kQuestionCatTitleStyle,
+                ),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 10.0),
+                Text(
+                  'Total: ${questionCategoryModel.total}, Not Attempted: ${questionCategoryModel.notAttempted}',
+                  style: kQuestionCatSubTitleStyle,
+                ),
+                Text(
+                  'Incorrect: ${questionCategoryModel.total - questionCategoryModel.correct}, Correct: ${questionCategoryModel.correct}',
+                  style: kQuestionCatSubTitleStyle,
+                ),
+                kDividerStyle,
+                const SizedBox(height: 10),
+              ],
+            ),
+            onTap: () {
+              questionCategoryBloc.add(QuestionCategorySelectedEvent(selectedQuestionType: questionCategoryModel.questionType));
+            },
           ),
-          leading: const Icon(FontAwesomeIcons.addressBook),
-          onTap: () {
-            questionCategoryBloc.add(QuestionCategorySelectedEvent(selectedQuestionType: questionCategoryModel.questionType));
-          },
         ),
       ),
     );
