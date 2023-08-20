@@ -1,5 +1,5 @@
+import 'package:drive_test_pal/features/practice_screen/widgets/options_widget.dart';
 import 'package:drive_test_pal/features/practice_screen/widgets/question_text_widget.dart';
-import 'package:drive_test_pal/features/question_category/bloc/question_category_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:drive_test_pal/constants/constants.dart';
@@ -15,7 +15,6 @@ class PracticeScreen extends StatefulWidget {
 
 class _PracticeScreenState extends State<PracticeScreen> {
   int? correctOptionIndex;
-  final QuestionCategoryBloc questionCategoryBloc = QuestionCategoryBloc();
 
   void highlightCorrectAnswer() {
     final correctOption = practiceQuestionBrain.getCorrectOption();
@@ -33,14 +32,10 @@ class _PracticeScreenState extends State<PracticeScreen> {
         children: <Widget>[
           //Question Text
           const QuestionTextWidget(),
-          //option 1
-          buildOptions(0),
-          //option 2
-          buildOptions(1),
-          //option 3
-          buildOptions(2),
-          //option 4
-          buildOptions(3),
+
+          for(int i=0;i<practiceQuestionBrain.getOptions().length;i++)
+            OptionsWidget(correctOptionIndex: correctOptionIndex, optionNumberIndex: i),
+            
           //show Answer button
           buildShowAnswerButton(),
           //next question button
@@ -117,28 +112,6 @@ class _PracticeScreenState extends State<PracticeScreen> {
       ),
     );
   }
-
-  Expanded buildOptions(int optionNumberIndex) {
-    final isCorrectOption = correctOptionIndex == optionNumberIndex;
-
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Container(
-          padding: const EdgeInsets.all(5.0),
-          decoration: BoxDecoration(
-            color: isCorrectOption ? Colors.green : Colors.transparent,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Text(
-            practiceQuestionBrain.getOptions()[optionNumberIndex],
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 20.0,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }
+
+

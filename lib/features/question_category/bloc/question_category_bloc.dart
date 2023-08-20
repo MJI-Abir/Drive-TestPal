@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:drive_test_pal/data/question_type_data.dart';
 import 'package:drive_test_pal/enums/enum.dart';
 import 'package:drive_test_pal/features/question_category/models/question_category_model.dart';
+import 'package:drive_test_pal/features/question_category/ui/question_category_screen.dart';
 import 'package:meta/meta.dart';
 
 part 'question_category_event.dart';
@@ -42,6 +43,7 @@ class QuestionCategoryBloc
   FutureOr<void> questionCategorySelectedEvent(
       QuestionCategorySelectedEvent event,
       Emitter<QuestionCategoryState> emit) {
+        practiceQuestionBrain.reset();
     emit(QCNavigateToPracticeQuestionScreenActionState(
         selectedQuestionType: event.selectedQuestionType));
   }

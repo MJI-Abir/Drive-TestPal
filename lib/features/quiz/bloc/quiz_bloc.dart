@@ -11,7 +11,6 @@ part 'quiz_event.dart';
 part 'quiz_state.dart';
 
 class QuizBloc extends Bloc<QuizEvent, QuizState> {
-  int _newScore = 0;
   Random random = Random();
   QuizBloc() : super(QuizInitialState()) {
     on<QuizInitialEvent>(quizInitialEvent);
@@ -34,13 +33,12 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
       QuizOptionSelectedEvent event, Emitter<QuizState> emit) {
     final correctOptionIndex = quizBrain.getCorrectOptionIndex();
     final isCorrectAnswer = event.selectedOptionIndex == correctOptionIndex;
-    String explanation = isCorrectAnswer? 'Correct':'Incorrect';
-    _newScore = isCorrectAnswer?_newScore+1: _newScore;
+    if (isCorrectAnswer) quizBrain.incrementScore();
     emit(QuizOptionSelectedActionState(
         selectedOptionIndex: event.selectedOptionIndex,
         isCorrectAnswer: isCorrectAnswer,
-        updatedScore: _newScore,
-        explanation: explanation));
+        updatedScore: quizBrain.getScore(),
+        explanation: quizBrain.getExplanation()));
   }
 
   FutureOr<void> quizContinueButtonClickedEvent(

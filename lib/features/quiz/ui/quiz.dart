@@ -3,7 +3,7 @@ import 'package:drive_test_pal/config/routes/app_routes.dart';
 import 'package:drive_test_pal/features/quiz/components/loading_body.dart';
 import 'package:drive_test_pal/features/quiz/components/options_widget.dart';
 import 'package:drive_test_pal/features/quiz/components/question_text_widget.dart';
-import 'package:drive_test_pal/quiz_brain.dart';
+import 'package:drive_test_pal/features/quiz/quiz_brain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -56,33 +56,13 @@ class _QuizState extends State<Quiz> {
             final successState = state as QuizLoadingSuccessState;
             quizBrain =
                 QuizBrain(selectedQuestions: successState.selectedQuestions);
-            return Scaffold(
-              body: Column(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  //Question Text
-                  const QuestionTextWidget(),
-
-                  //Options
-                  for (int i = 0; i < quizBrain.getOptions().length; i++)
-                    OptionsWidget(
-                        isOptionSelected: isOptionSelected,
-                        quizBloc: quizBloc,
-                        optionNumberIndex: i,
-                        state: successState),
-
-                  if (isContinueButtonVisible) buildContinueButton(),
-                ],
-              ),
-            );
+            return buildQuizScreen(successState);
 
           case QuizOptionSelectedActionState:
             final quizOptionSelectedActionState =
                 state as QuizOptionSelectedActionState;
             isOptionSelected = true;
             isContinueButtonVisible = true;
-
             //       final explanation = state.explanation;
             // final updatedScore = state.updatedScore;
             return buildQuizScreen(quizOptionSelectedActionState);
@@ -93,7 +73,6 @@ class _QuizState extends State<Quiz> {
             isOptionSelected = false;
             isContinueButtonVisible = false;
             quizBrain.nextQuestion();
-
             return buildQuizScreen(quizGoToNextQuizActionState);
 //TODO: problem
           default:
@@ -112,20 +91,22 @@ class _QuizState extends State<Quiz> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Text('score'),
           const QuestionTextWidget(),
-          // Build your UI components with the updated information
-          // Text(explanation), // Display explanation
-          // Text("Score: $updatedScore"), // Display updated score
-
-          // Build options using the updated color
           for (int i = 0; i < quizBrain.getOptions().length; i++)
             OptionsWidget(
                 isOptionSelected: isOptionSelected,
                 quizBloc: quizBloc,
                 optionNumberIndex: i,
                 state: quizState),
-          Text('Explanation'),
+
+          if (quizState is QuizOptionSelectedActionState)
+            Column(
+              children: [
+                Text('${quizState.updatedScore}'),
+                Text(quizState.explanation),
+              ],
+            ),
+
           const SizedBox(height: 150),
 
           if (isContinueButtonVisible) buildContinueButton(),

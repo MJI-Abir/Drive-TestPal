@@ -1,3 +1,4 @@
+import 'package:drive_test_pal/features/quiz/ui/quiz.dart';
 import 'package:flutter/material.dart';
 
 class QuizResult extends StatelessWidget {
@@ -5,8 +6,8 @@ class QuizResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text('this is the quiz result page')),
+    return Scaffold(
+      body: Center(child: Text('Your Score is: ${quizBrain.getScore()}')),
     );
   }
 }
