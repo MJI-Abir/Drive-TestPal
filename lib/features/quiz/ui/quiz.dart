@@ -1,14 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:drive_test_pal/config/routes/app_routes.dart';
-import 'package:drive_test_pal/features/quiz/components/loading_body.dart';
-import 'package:drive_test_pal/features/quiz/components/options_widget.dart';
-import 'package:drive_test_pal/features/quiz/components/question_text_widget.dart';
+import 'package:drive_test_pal/features/quiz/widgets/loading_body.dart';
+import 'package:drive_test_pal/features/quiz/widgets/options_widget.dart';
+import 'package:drive_test_pal/features/quiz/widgets/question_text_widget.dart';
 import 'package:drive_test_pal/features/quiz/quiz_brain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:drive_test_pal/constants/constants.dart';
 import 'package:drive_test_pal/features/quiz/bloc/quiz_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 late QuizBrain quizBrain;
 
@@ -33,6 +34,7 @@ class _QuizState extends State<Quiz> {
   int? correctOptionIndex;
   bool isContinueButtonVisible = false;
   bool isOptionSelected = false;
+  int quizSize = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +56,7 @@ class _QuizState extends State<Quiz> {
 
           case QuizLoadingSuccessState:
             final successState = state as QuizLoadingSuccessState;
+            quizSize = successState.selectedQuestions.length;
             quizBrain =
                 QuizBrain(selectedQuestions: successState.selectedQuestions);
             return buildQuizScreen(successState);
@@ -63,8 +66,6 @@ class _QuizState extends State<Quiz> {
                 state as QuizOptionSelectedActionState;
             isOptionSelected = true;
             isContinueButtonVisible = true;
-            //       final explanation = state.explanation;
-            // final updatedScore = state.updatedScore;
             return buildQuizScreen(quizOptionSelectedActionState);
 
           case QuizGoToNextQuizActionState:
@@ -85,51 +86,81 @@ class _QuizState extends State<Quiz> {
   SafeArea buildQuizScreen(QuizState quizState) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          leading: const Icon(
+            Icons.arrow_back_sharp,
+            color: Colors.black,
+          ),
+          backgroundColor: Colors.blue[100],
+          title: Text(
+            'Practice Quiz',
+            style: GoogleFonts.aBeeZee(
+              color: Colors.black,
+            ),
+          ),
+        ),
         body: Padding(
           padding: const EdgeInsets.all(kDefaultPadding),
-          child: Container(
-            constraints: const BoxConstraints(minHeight: 0, maxHeight: 400),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white60,
-            ),
-            child: Column(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              // crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                const QuestionTextWidget(),
-                for (int i = 0; i < quizBrain.getOptions().length; i++)
-                  OptionsWidget(
-                      isOptionSelected: isOptionSelected,
-                      quizBloc: quizBloc,
-                      optionNumberIndex: i,
-                      state: quizState),
-                if (quizState is QuizOptionSelectedActionState)
-                  Text(quizState.explanation),
-                if (isContinueButtonVisible) buildContinueButton(),
-              ],
-            ),
+          child: Column(
+            children: [
+              Text('$quizSize'),
+              Card(
+                elevation: kDefaultElevation,
+                shape: BeveledRectangleBorder(
+                  borderRadius: BorderRadius.circular(kBorderRadius),
+                ),
+                child: Container(
+                  padding: const EdgeInsets.all(kDefaultPadding),
+                  constraints: const BoxConstraints(minHeight: 0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white60,
+                  ),
+                  child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      const QuestionTextWidget(),
+                      kDividerStyle,
+                      for (int i = 0; i < quizBrain.getOptions().length; i++)
+                        OptionsWidget(
+                            isOptionSelected: isOptionSelected,
+                            quizBloc: quizBloc,
+                            optionNumberIndex: i,
+                            state: quizState),
+                      if (quizState is QuizOptionSelectedActionState)
+                        Padding(
+                          padding: const EdgeInsets.all(kDefaultPadding),
+                          child: Text(
+                            quizState.explanation,
+                            style: const TextStyle(
+                                fontSize: 16.0, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      if (isContinueButtonVisible) buildContinueButton(),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 
-  Padding buildContinueButton() {
-    return Padding(
-      padding: kButtonPadding,
-      child: TextButton(
-        style: TextButton.styleFrom(
-          foregroundColor: Colors.white,
-          backgroundColor: Colors.teal,
-        ),
-        onPressed: () {
-          quizBloc.add(QuizContinueButtonClickedEvent());
-        },
-        child: const Text(
-          'Continue',
-          style: TextStyle(color: Colors.black87),
-        ),
+  TextButton buildContinueButton() {
+    return TextButton(
+      style: TextButton.styleFrom(
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.teal,
+      ),
+      onPressed: () {
+        quizBloc.add(QuizContinueButtonClickedEvent());
+      },
+      child: const Text(
+        'Continue',
+        style: TextStyle(color: Colors.black87),
       ),
     );
   }

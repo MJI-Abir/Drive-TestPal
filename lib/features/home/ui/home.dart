@@ -1,5 +1,4 @@
-import 'package:drive_test_pal/components/icon_content.dart';
-import 'package:drive_test_pal/components/reusable_card.dart';
+import 'package:drive_test_pal/features/home/widgets/reusable_card_widget.dart';
 import 'package:drive_test_pal/config/routes/app_routes.dart';
 import 'package:drive_test_pal/constants/constants.dart';
 import 'package:flutter/material.dart';
@@ -8,23 +7,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class Home extends StatelessWidget {
   const Home({super.key});
 
-  Expanded buildKey(IconData iconData, String cardLabel, String navigateTo, BuildContext context) {
-    return Expanded(
-      child: ReusableCard(
-        color: kActiveCardColor,
-        // color: _isHovered ? kActiveCardColor : kInactiveCardColor,
-        cardChild: IconContent(icon: iconData, label: cardLabel),
-        onPress: () {
-          Navigator.pushNamed(context, navigateTo);
-        },
-        //TODO 1: Create a method "animateWhileHovering" to make an animation while hovering over the ReusableCard.
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kAppBarColor,
@@ -39,20 +23,44 @@ class Home extends StatelessWidget {
           children: <Widget>[
             Row(
               children: <Widget>[
-                buildKey(FontAwesomeIcons.listCheck, 'Start Test', AppRoutes.quizPage, context),
-                buildKey(FontAwesomeIcons.book, 'Flash Cards', AppRoutes.questionCategoryPage, context),
+                ReusableCardWidget(
+                    iconData: FontAwesomeIcons.listCheck,
+                    cardLabel: 'Start Test',
+                    navigateTo: AppRoutes.quizPage,
+                    context: context),
+                ReusableCardWidget(
+                    iconData: FontAwesomeIcons.book,
+                    cardLabel: 'Flash Cards',
+                    navigateTo: AppRoutes.questionCategoryPage,
+                    context: context),
               ],
             ),
             Row(
               children: <Widget>[
-                buildKey(FontAwesomeIcons.circleInfo, 'Info', '/', context),
-                buildKey(FontAwesomeIcons.gear, 'Settings', '/', context),
+                ReusableCardWidget(
+                    iconData: FontAwesomeIcons.circleInfo,
+                    cardLabel: 'Info',
+                    navigateTo: '/',
+                    context: context),
+                ReusableCardWidget(
+                    iconData: FontAwesomeIcons.gear,
+                    cardLabel: 'Settings',
+                    navigateTo: '/',
+                    context: context),
               ],
             ),
             Row(
               children: <Widget>[
-                buildKey(FontAwesomeIcons.handHoldingDollar, 'Upgrade', '/', context),
-                buildKey(FontAwesomeIcons.book, 'Free Stuff', '/', context),
+                ReusableCardWidget(
+                    iconData: FontAwesomeIcons.handHoldingDollar,
+                    cardLabel: 'Upgrade',
+                    navigateTo: '/',
+                    context: context),
+                ReusableCardWidget(
+                    iconData: FontAwesomeIcons.book,
+                    cardLabel: 'Free Stuff',
+                    navigateTo: '/',
+                    context: context),
               ],
             ),
           ],

@@ -10,14 +10,11 @@ class QuestionTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(kDefaultPadding) ,
-      child: Text(
-        quizBrain.getQuestionText(),
-        textAlign: TextAlign.left,
-        style: GoogleFonts.robotoMono(
-          textStyle: kQuestionTextStyle,
-        ),
+    return Text(
+      quizBrain.getQuestionText(),
+      textAlign: TextAlign.left,
+      style: GoogleFonts.robotoMono(
+        textStyle: kQuestionTextStyle,
       ),
     );
   }

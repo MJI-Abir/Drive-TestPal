@@ -22,7 +22,7 @@ class QuestionCategoryBloc
       QuestionCategoryInitialEvent event,
       Emitter<QuestionCategoryState> emit) async {
     emit(QCLoadingState());
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 1));
     emit(
       QCLoadingSuccessState(
         categories: QuestionTypeData.questionTypes

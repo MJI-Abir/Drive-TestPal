@@ -9,10 +9,10 @@ const kBottomContainerColor = Color(0xFFEB1555);
 const kAppBarColor = Colors.transparent;
 const kOptionDefaultColor = Colors.black12;
 
-const kBorderRadius = BorderRadius.all(Radius.circular(10.0));
+const kBorderRadius = 10.0;
 const kLabelTextStyle = TextStyle(
   fontSize: 18.0,
-  color: Colors.white,
+  color: Colors.black,
   fontWeight: FontWeight.bold,
 );
 

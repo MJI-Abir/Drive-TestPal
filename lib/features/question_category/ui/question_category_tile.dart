@@ -21,7 +21,7 @@ class QuestionCatTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 0.0),
       child: ListTileTheme(
-        shape: const RoundedRectangleBorder(borderRadius: kBorderRadius),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kBorderRadius)),
         contentPadding: const EdgeInsets.all(5),
         iconColor: Colors.white,
         textColor: Colors.white,

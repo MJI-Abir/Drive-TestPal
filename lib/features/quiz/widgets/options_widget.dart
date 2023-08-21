@@ -3,6 +3,8 @@ import 'package:drive_test_pal/features/quiz/bloc/quiz_bloc.dart';
 import 'package:drive_test_pal/features/quiz/ui/quiz.dart';
 import 'package:flutter/material.dart';
 
+int? selectedOptionIndex;
+
 class OptionsWidget extends StatelessWidget {
   const OptionsWidget({
     super.key,
@@ -33,34 +35,42 @@ class OptionsWidget extends StatelessWidget {
     } else {
       optionColor = kOptionDefaultColor;
     }
-    return Padding(
-      padding: const EdgeInsets.all(kDefaultPadding - 5),
-      child: Card(
-        elevation: kDefaultElevation,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        child: GestureDetector(
-          onTap: isOptionSelected
-              ? null
-              : () {
-                  quizBloc.add(QuizOptionSelectedEvent(
+    return Card(
+      elevation: kDefaultElevation,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      child: Container(
+        // padding: const EdgeInsets.all(kDefaultPadding - 5),
+        alignment: Alignment.centerLeft,
+        decoration: BoxDecoration(
+          color: optionColor,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          children: [
+            Checkbox(
+              value: isOptionSelected
+                  ? (selectedOptionIndex == optionNumberIndex ? true : false)
+                  : false,
+              onChanged: (newValue) {
+                if (newValue == true) {
+                  selectedOptionIndex = optionNumberIndex;
+                  quizBloc.add(
+                    QuizOptionSelectedEvent(
                       selectedOptionIndex: optionNumberIndex,
-                      correctOptionIndex: quizBrain.getCorrectOptionIndex()));
-                },
-          child: Container(
-            padding: const EdgeInsets.all(10.0),
-            alignment: Alignment.centerLeft,
-            decoration: BoxDecoration(
-              color: optionColor,
-              borderRadius: BorderRadius.circular(20),
+                      correctOptionIndex: quizBrain.getCorrectOptionIndex(),
+                    ),
+                  );
+                }
+              },
             ),
-            child: Text(
+            Text(
               quizBrain.getOptions()[optionNumberIndex],
               style: const TextStyle(
                 color: Colors.black,
                 fontSize: 15.0,
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

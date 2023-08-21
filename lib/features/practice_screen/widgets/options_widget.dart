@@ -23,7 +23,7 @@ class OptionsWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Container(
           alignment: Alignment.centerLeft,
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(kDefaultPadding),
           decoration: BoxDecoration(
             color: isCorrectOption ? Colors.green : kOptionDefaultColor,
             borderRadius: BorderRadius.circular(20),

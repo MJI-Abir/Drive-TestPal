@@ -63,7 +63,7 @@ class QuestionData {
         QuestionTypeEnum.intersection,
         'What should you do if you want to turn left when the oncoming traffic is heavy?',
         3,
-        ['a) option 321 hello my name is mji abir and i am a flutter developer', 'b) option 322', 'c) option 323', 'd) option 324'],'hello here is the explanation for this question'),
+        ['a) option 321 ', 'b) option 322', 'c) option 323', 'd) option 324'],'hello here is the explanation for this question'),
     PracticeQuestion(
         QuestionTypeEnum.intersection,
         'What should you do if you want to turn left on a green light?',
