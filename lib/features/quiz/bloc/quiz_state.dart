@@ -21,7 +21,7 @@ class QuizErrorState extends QuizState{
 
 }
 
-class QuizFinishedState extends QuizState{}
+class QuizFinishedActionState extends QuizState{}
 
 class QuizOptionSelectedActionState extends QuizActionState {
   final int selectedOptionIndex;

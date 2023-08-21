@@ -1,3 +1,4 @@
+import 'package:drive_test_pal/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,20 +9,12 @@ class QuestionTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 2,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Center(
-          child: Text(
-            practiceQuestionBrain.getQuestionText(),
-            style: GoogleFonts.roboto(
-              textStyle: const TextStyle(
-                fontSize: 20.0,
-                color: Colors.black,
-              ),
-            ),
-          ),
+    return Padding(
+      padding: const EdgeInsets.all(kDefaultPadding),
+      child: Text(
+        practiceQuestionBrain.getQuestionText(),
+        style: GoogleFonts.robotoMono(
+          textStyle: kQuestionTextStyle,
         ),
       ),
     );

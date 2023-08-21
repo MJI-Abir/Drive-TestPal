@@ -41,7 +41,7 @@ class _QuizState extends State<Quiz> {
       // listenWhen: (previous, current) => current is QuizActionState,
       // buildWhen: (previous, current) => current is! QuizActionState,
       listener: (context, state) {
-        if (state is QuizFinishedState) {
+        if (state is QuizFinishedActionState) {
           Navigator.pushNamed(context, AppRoutes.quizResultPage);
         }
       },
@@ -85,14 +85,13 @@ class _QuizState extends State<Quiz> {
   SafeArea buildQuizScreen(QuizState quizState) {
     return SafeArea(
       child: Scaffold(
-
         body: Padding(
-          padding: kDefaultPadding,
+          padding: const EdgeInsets.all(kDefaultPadding),
           child: Container(
-            constraints: const BoxConstraints(minHeight: 0),
+            constraints: const BoxConstraints(minHeight: 0, maxHeight: 400),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Colors.blue[100],
+              color: Colors.white60,
             ),
             child: Column(
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,17 +104,9 @@ class _QuizState extends State<Quiz> {
                       quizBloc: quizBloc,
                       optionNumberIndex: i,
                       state: quizState),
-          
                 if (quizState is QuizOptionSelectedActionState)
-                  Column(
-                    children: [
-                      Text('${quizState.updatedScore}'),
-                      Text(quizState.explanation),
-                    ],
-                  ),
-          
+                  Text(quizState.explanation),
                 if (isContinueButtonVisible) buildContinueButton(),
-          
               ],
             ),
           ),

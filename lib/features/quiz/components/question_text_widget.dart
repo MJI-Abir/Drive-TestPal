@@ -11,7 +11,7 @@ class QuestionTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: kDefaultPadding,
+      padding: const EdgeInsets.all(kDefaultPadding) ,
       child: Text(
         quizBrain.getQuestionText(),
         textAlign: TextAlign.left,

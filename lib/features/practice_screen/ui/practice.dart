@@ -3,7 +3,6 @@ import 'package:drive_test_pal/features/practice_screen/widgets/question_text_wi
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:drive_test_pal/constants/constants.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../question_category/ui/question_category_screen.dart';
 
@@ -26,22 +25,37 @@ class _PracticeScreenState extends State<PracticeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          //Question Text
-          const QuestionTextWidget(),
-
-          for(int i=0;i<practiceQuestionBrain.getOptions().length;i++)
-            OptionsWidget(correctOptionIndex: correctOptionIndex, optionNumberIndex: i),
-            
-          //show Answer button
-          buildShowAnswerButton(),
-          //next question button
-          buildNextQuestionButton(context),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(kDefaultPadding),
+          child: Container(
+            constraints: const BoxConstraints(minHeight: 0),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.white60),
+            child: Column(
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                //Question Text
+                const QuestionTextWidget(),
+    
+                for (int i = 0;
+                    i < practiceQuestionBrain.getOptions().length;
+                    i++)
+                  OptionsWidget(
+                      correctOptionIndex: correctOptionIndex,
+                      optionNumberIndex: i),
+    
+                //show Answer button
+                buildShowAnswerButton(),
+                //next question button
+                buildNextQuestionButton(context),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -114,5 +128,3 @@ class _PracticeScreenState extends State<PracticeScreen> {
     );
   }
 }
-
-

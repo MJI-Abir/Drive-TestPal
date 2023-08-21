@@ -44,7 +44,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   FutureOr<void> quizContinueButtonClickedEvent(
       QuizContinueButtonClickedEvent event, Emitter<QuizState> emit) {
     if (quizBrain.isQuizFinished()) {
-      emit(QuizFinishedState());
+      emit(QuizFinishedActionState());
     } else {
       emit(QuizGoToNextQuizActionState());
     }

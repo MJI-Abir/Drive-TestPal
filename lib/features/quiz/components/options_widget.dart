@@ -29,12 +29,12 @@ class OptionsWidget extends StatelessWidget {
               ? (optionSelectedState.isCorrectAnswer
                   ? Colors.green
                   : Colors.red)
-              : Colors.transparent);
+              : kOptionDefaultColor);
     } else {
-      optionColor = Colors.teal;
+      optionColor = kOptionDefaultColor;
     }
     return Padding(
-      padding: const EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(kDefaultPadding - 5),
       child: Card(
         elevation: kDefaultElevation,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
