@@ -30,7 +30,7 @@ class ReusableCardWidget extends StatelessWidget {
             child: Container(
                 padding: const EdgeInsets.all(kDefaultPadding + 5.0),
                 decoration: BoxDecoration(
-                  color: kOptionDefaultColor,
+                  color: kAppThemeColor.withOpacity(0.8),
                   borderRadius: BorderRadius.circular(kBorderRadius + 10.0),
                 ),
                 child: IconContent(icon: iconData, label: cardLabel)),

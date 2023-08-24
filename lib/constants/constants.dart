@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 const kDefaultElevation = 6.0;
 
-const kAppThemeColor = Color(0xFF08272c);
+const kAppThemeColor = Colors.white;
 const kActiveCardColor = Color(0xFF1c1e1f);
 const kInactiveCardColor = Color(0x100c353b);
 const kBottomContainerColor = Color(0xFFEB1555);

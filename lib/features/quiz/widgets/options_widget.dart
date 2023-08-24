@@ -31,19 +31,20 @@ class OptionsWidget extends StatelessWidget {
               ? (optionSelectedState.isCorrectAnswer
                   ? Colors.green
                   : Colors.red)
-              : kOptionDefaultColor);
+              : kAppThemeColor.withOpacity(0.8));
     } else {
-      optionColor = kOptionDefaultColor;
+      optionColor = kAppThemeColor.withOpacity(0.8);
     }
     return Card(
       elevation: kDefaultElevation,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(kBorderRadius),
+      ),
       child: Container(
-        // padding: const EdgeInsets.all(kDefaultPadding - 5),
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
           color: optionColor,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(kBorderRadius),
         ),
         child: Row(
           children: [

@@ -28,6 +28,10 @@ class QuizBrain {
     return selectedQuestions[_randomQuestionId].questionAnswer - 1;
   }
 
+  int getQuestionId() {
+    return _randomQuestionId + 1;
+  }
+
   bool isQuizFinished() {
     return _randomQuestionId >= (selectedQuestions.length - 1) ? true : false;
   }
@@ -36,11 +40,11 @@ class QuizBrain {
     _score++;
   }
 
-  int getScore(){
+  int getScore() {
     return _score;
   }
 
-  String getExplanation(){
+  String getExplanation() {
     return selectedQuestions[_randomQuestionId].explanation;
   }
 }

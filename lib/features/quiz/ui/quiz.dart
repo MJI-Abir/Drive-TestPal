@@ -32,7 +32,7 @@ class _QuizState extends State<Quiz> {
   int? selectedOptionIndex;
   bool isCorrectAnswer = false;
   int? correctOptionIndex;
-  bool isContinueButtonVisible = false;
+  bool isNextButtonVisible = false;
   bool isOptionSelected = false;
   int quizSize = 0;
 
@@ -65,14 +65,14 @@ class _QuizState extends State<Quiz> {
             final quizOptionSelectedActionState =
                 state as QuizOptionSelectedActionState;
             isOptionSelected = true;
-            isContinueButtonVisible = true;
+            isNextButtonVisible = true;
             return buildQuizScreen(quizOptionSelectedActionState);
 
           case QuizGoToNextQuizActionState:
             final quizGoToNextQuizActionState =
                 state as QuizGoToNextQuizActionState;
             isOptionSelected = false;
-            isContinueButtonVisible = false;
+            isNextButtonVisible = false;
             quizBrain.nextQuestion();
             return buildQuizScreen(quizGoToNextQuizActionState);
 //TODO: problem
@@ -87,11 +87,17 @@ class _QuizState extends State<Quiz> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: const Icon(
-            Icons.arrow_back_sharp,
-            color: Colors.black,
+          elevation: 1,
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const Icon(
+              Icons.arrow_back_sharp,
+              color: Colors.black,
+            ),
           ),
-          backgroundColor: Colors.blue[100],
+          backgroundColor: kAppThemeColor,
           title: Text(
             'Practice Quiz',
             style: GoogleFonts.aBeeZee(
@@ -99,68 +105,78 @@ class _QuizState extends State<Quiz> {
             ),
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(kDefaultPadding),
-          child: Column(
-            children: [
-              Text('$quizSize'),
-              Card(
-                elevation: kDefaultElevation,
-                shape: BeveledRectangleBorder(
-                  borderRadius: BorderRadius.circular(kBorderRadius),
-                ),
-                child: Container(
-                  padding: const EdgeInsets.all(kDefaultPadding),
-                  constraints: const BoxConstraints(minHeight: 0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white60,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(kDefaultPadding),
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(bottom: kDefaultPadding),
+                  child: Text(
+                    '${quizBrain.getQuestionId()}/$quizSize',
+                    style: const TextStyle(fontWeight: FontWeight.w600),
                   ),
-                  child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    // crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      const QuestionTextWidget(),
-                      kDividerStyle,
-                      for (int i = 0; i < quizBrain.getOptions().length; i++)
-                        OptionsWidget(
-                            isOptionSelected: isOptionSelected,
-                            quizBloc: quizBloc,
-                            optionNumberIndex: i,
-                            state: quizState),
-                      if (quizState is QuizOptionSelectedActionState)
-                        Padding(
-                          padding: const EdgeInsets.all(kDefaultPadding),
-                          child: Text(
-                            quizState.explanation,
-                            style: const TextStyle(
-                                fontSize: 16.0, fontWeight: FontWeight.bold),
+                ),
+                Card(
+                  elevation: kDefaultElevation,
+                  shape: BeveledRectangleBorder(
+                    borderRadius: BorderRadius.circular(kBorderRadius),
+                  ),
+                  child: Container(
+                    padding: const EdgeInsets.all(kDefaultPadding),
+                    constraints: const BoxConstraints(minHeight: 0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: kAppThemeColor.withOpacity(0.75),
+                    ),
+                    child: Column(
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      // crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        const QuestionTextWidget(),
+                        kDividerStyle,
+                        for (int i = 0; i < quizBrain.getOptions().length; i++)
+                          OptionsWidget(
+                              isOptionSelected: isOptionSelected,
+                              quizBloc: quizBloc,
+                              optionNumberIndex: i,
+                              state: quizState),
+                        if (quizState is QuizOptionSelectedActionState)
+                          Padding(
+                            padding: const EdgeInsets.all(kDefaultPadding),
+                            child: Text(
+                              quizState.explanation,
+                              style: const TextStyle(
+                                  fontSize: 16.0, fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        ),
-                      if (isContinueButtonVisible) buildContinueButton(),
-                    ],
+                        if (isNextButtonVisible) buildNextButton(),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  TextButton buildContinueButton() {
+  TextButton buildNextButton() {
     return TextButton(
       style: TextButton.styleFrom(
-        foregroundColor: Colors.white,
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.blue[100],
       ),
       onPressed: () {
         quizBloc.add(QuizContinueButtonClickedEvent());
       },
       child: const Text(
-        'Continue',
-        style: TextStyle(color: Colors.black87),
+        'NEXT',
+        style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }

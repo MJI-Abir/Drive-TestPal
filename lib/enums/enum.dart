@@ -6,3 +6,9 @@ enum QuestionTypeEnum{
   laneChange,
   parking,
 }
+
+enum Difficulty{
+  easy,
+  medium,
+  hard,
+}
