@@ -20,7 +20,8 @@ class Home extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         primary: true,
-        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics()),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -50,98 +51,17 @@ class Home extends StatelessWidget {
                 children: List.generate(
                   questionData.numberOfAllQuestions,
                   (index) => Container(
-                      margin:
-                          const EdgeInsets.only(bottom: kDefaultPadding * 2),
-                      child: const QuizCard()),
+                    margin: const EdgeInsets.only(bottom: kDefaultPadding * 2),
+                    child: QuizCard(
+                      index: index + 1,
+                    ),
+                  ),
                 ),
               ),
             ),
-            // QuizCardListLayout(),
           ],
         ),
       ),
     );
   }
 }
-
-
-
-
-
-
-
-                // ListView.builder(
-                //     // primary: false,
-                //     // scrollDirection: Axis.horizontal,
-                //     // shrinkWrap: true,
-                //     itemCount: questionData.numberOfAllQuestions,
-                //     itemBuilder: (context, index) {
-                //       return const QuizCard();
-                //     }),
-
-
-
-
-            // Row(
-            //   children: <Widget>[
-            //     ReusableCardWidget(
-            //         iconData: FontAwesomeIcons.listCheck,
-            //         cardLabel: 'Start Test',
-            //         navigateTo: AppRoutes.quizPage,
-            //         context: context),
-            //     ReusableCardWidget(
-            //         iconData: FontAwesomeIcons.book,
-            //         cardLabel: 'Flash Cards',
-            //         navigateTo: AppRoutes.questionCategoryPage,
-            //         context: context),
-            //   ],
-            // ),
-            // Row(
-            //   children: <Widget>[
-            //     ReusableCardWidget(
-            //         iconData: FontAwesomeIcons.circleInfo,
-            //         cardLabel: 'Info',
-            //         navigateTo: '/',
-            //         context: context),
-            //     ReusableCardWidget(
-            //         iconData: FontAwesomeIcons.gear,
-            //         cardLabel: 'Settings',
-            //         navigateTo: '/',
-            //         context: context),
-            //   ],
-            // ),
-            // Row(
-            //   children: <Widget>[
-            //     ReusableCardWidget(
-            //         iconData: FontAwesomeIcons.handHoldingDollar,
-            //         cardLabel: 'Upgrade',
-            //         navigateTo: '/',
-            //         context: context),
-            //     ReusableCardWidget(
-            //         iconData: FontAwesomeIcons.book,
-            //         cardLabel: 'Free Stuff',
-            //         navigateTo: '/',
-            //         context: context),
-            //   ],
-            // ),
-            // Text('data'),
-            // Text('hello from Bangladesh'),
-            // Text('yo yo whats happeninere'),
-            // Card(
-            //   child: Column(
-            //     children: <Widget> [
-            //       Expanded(
-            //         child: Container(
-            //           decoration: BoxDecoration(
-            //             borderRadius: BorderRadius.circular(50),
-            //             image: const DecorationImage(
-            //               image: AssetImage('assets/images/traffic1.jpg'),
-            //               fit: BoxFit.fill,
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //       const Text('practice Test 1'),
-            //     ],
-            //   ),
-            // ),

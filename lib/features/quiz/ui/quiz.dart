@@ -163,19 +163,26 @@ class _QuizState extends State<Quiz> {
     );
   }
 
-  TextButton buildNextButton() {
-    return TextButton(
-      style: TextButton.styleFrom(
-        backgroundColor: Colors.blue[100],
+  Container buildNextButton() {
+    return Container(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(
+          Radius.circular(kBorderRadius),
+        ),
+        gradient: LinearGradient(
+          colors: [kButtonColor, Color(0xB01C3971)],
+        ),
       ),
-      onPressed: () {
-        quizBloc.add(QuizContinueButtonClickedEvent());
-      },
-      child: const Text(
-        'NEXT',
-        style: TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
+      child: TextButton(
+        onPressed: () {
+          quizBloc.add(QuizContinueButtonClickedEvent());
+        },
+        child: const Text(
+          'NEXT',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );

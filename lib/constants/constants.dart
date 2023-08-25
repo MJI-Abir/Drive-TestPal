@@ -5,9 +5,9 @@ const kDefaultElevation = 6.0;
 const kAppThemeColor = Colors.white;
 const kActiveCardColor = Color(0xFF1c1e1f);
 const kInactiveCardColor = Color(0x100c353b);
-const kBottomContainerColor = Color(0xFFEB1555);
 const kAppBarColor = Colors.transparent;
 const kOptionDefaultColor = Colors.black12;
+const kButtonColor = Color(0xFF1C3971);
 
 const kBorderRadius = 10.0;
 const kLabelTextStyle = TextStyle(
