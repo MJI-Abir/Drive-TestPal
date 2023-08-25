@@ -1,5 +1,6 @@
 import 'package:drive_test_pal/constants/constants.dart';
-import 'package:drive_test_pal/features/home/widgets/quiz_card_layout.dart';
+import 'package:drive_test_pal/features/home/widgets/quiz_card.dart';
+import 'package:drive_test_pal/practice_question_brain.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,11 +18,45 @@ class Home extends StatelessWidget {
               fontSize: 24.0, color: Colors.black, fontWeight: FontWeight.w600),
         ),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
+        primary: true,
+        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            QuizCardListLayout(),
+            Padding(
+              padding: const EdgeInsets.only(
+                  top: kDefaultPadding * 2, left: kDefaultPadding),
+              child: Text(
+                'EASY QUESTIONS',
+                style: GoogleFonts.aBeeZee(
+                  textStyle: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            // Text('data'),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
+              child: Row(
+                children: List.generate(
+                  questionData.numberOfAllQuestions,
+                  (index) => Container(
+                      margin:
+                          const EdgeInsets.only(bottom: kDefaultPadding * 2),
+                      child: const QuizCard()),
+                ),
+              ),
+            ),
+            // QuizCardListLayout(),
           ],
         ),
       ),
@@ -35,6 +70,14 @@ class Home extends StatelessWidget {
 
 
 
+                // ListView.builder(
+                //     // primary: false,
+                //     // scrollDirection: Axis.horizontal,
+                //     // shrinkWrap: true,
+                //     itemCount: questionData.numberOfAllQuestions,
+                //     itemBuilder: (context, index) {
+                //       return const QuizCard();
+                //     }),
 
 
 

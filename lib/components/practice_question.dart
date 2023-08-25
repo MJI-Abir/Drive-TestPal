@@ -7,6 +7,7 @@ class PracticeQuestion {
   final int questionAnswer;
   final List<String> options;
   final String explanation;
+  final DifficultyEnum difficultyEnum;
 
   PracticeQuestion(
     this.questionType,
@@ -14,5 +15,6 @@ class PracticeQuestion {
     this.questionAnswer,
     this.options,
     this.explanation,
+    this.difficultyEnum,
   );
 }

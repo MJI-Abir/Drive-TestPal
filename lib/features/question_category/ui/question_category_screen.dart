@@ -64,7 +64,6 @@ class _QuestionCategoryScreenState extends State<QuestionCategoryScreen> {
                 },
                 child: const Icon(Icons.arrow_back_ios_sharp),
               ),
-              // body: QuestionsCatList(),
               body: QuestionCategoryListWidget(successState: successState, questionCategoryBloc: questionCategoryBloc),
             );
 

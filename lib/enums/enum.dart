@@ -7,7 +7,7 @@ enum QuestionTypeEnum{
   parking,
 }
 
-enum Difficulty{
+enum DifficultyEnum{
   easy,
   medium,
   hard,

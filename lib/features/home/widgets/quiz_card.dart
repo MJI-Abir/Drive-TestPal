@@ -16,7 +16,6 @@ class QuizCard extends StatelessWidget {
         width: MediaQuery.of(context).size.width * .6,
         child: Card(
           elevation: 5,
-          // shadowColor: Colors.black,
           margin: EdgeInsets.zero,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(kBorderRadius*2),
