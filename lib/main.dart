@@ -1,5 +1,5 @@
-import 'package:drive_test_pal/config/routes/app_routes.dart';
-import 'package:drive_test_pal/constants/constants.dart';
+import 'package:drive_test_pal/core/utils/app_routes.dart';
+import 'package:drive_test_pal/core/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 void main() {
