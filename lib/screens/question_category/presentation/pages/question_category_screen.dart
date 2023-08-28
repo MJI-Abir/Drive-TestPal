@@ -51,7 +51,6 @@ class _QuestionCategoryScreenState extends State<QuestionCategoryScreen> {
                 backgroundColor: kAppBarColor,
                 // centerTitle: true,
                 title: const Text(
-                  
                   'Question categories',
                   style: kTitleTextStyle,
                 ),

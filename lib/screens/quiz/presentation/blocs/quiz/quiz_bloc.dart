@@ -1,15 +1,32 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:bloc/bloc.dart';
-import 'package:drive_test_pal/screens/home/presentation/blocks/homeBloc/home_bloc.dart';
+import 'package:drive_test_pal/core/data/question_data.dart';
+import 'package:drive_test_pal/core/utils/enum.dart';
+import 'package:drive_test_pal/core/widgets/practice_question.dart';
+import 'package:drive_test_pal/screens/quiz/quiz_brain.dart';
 import 'package:meta/meta.dart';
 
 part 'quiz_event.dart';
 part 'quiz_state.dart';
 
+QuizBrain quizBrain = QuizBrain(selectedQuestions: QuestionData.questionBank);
+
 class QuizBloc extends Bloc<QuizEvent, QuizState> {
-  Random random = Random();
+  List<PracticeQuestion> questions = [];
+  List<PracticeQuestion> selectedQuestions = [];
+
+  DifficultyEnum _difficulty = DifficultyEnum.easy;
+  int _index = 0;
+
+  set difficultyFromBloc(DifficultyEnum difficulty) {
+    _difficulty = difficulty;
+  }
+
+  set indexFromBloc(int index) {
+    _index = index*5;
+  }
+
   QuizBloc() : super(QuizInitialState()) {
     on<QuizInitialEvent>(quizInitialEvent);
     on<QuizOptionSelectedEvent>(quizOptionSelectedEvent);
@@ -20,7 +37,12 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   FutureOr<void> quizInitialEvent(
       QuizInitialEvent event, Emitter<QuizState> emit) async {
     emit(QuizLoadingState());
-    //TODO: generate list of random practiceQuestions
+    questions = QuestionData.questionBank
+        .where((question) => question.difficultyEnum == _difficulty)
+        .toList();
+    selectedQuestions = questions.sublist(_index,
+        _index + 5 <= questions.length ? _index+5 : questions.length);
+    quizBrain = QuizBrain(selectedQuestions: selectedQuestions);
     await Future.delayed(const Duration(seconds: 2));
     emit(QuizLoadingSuccessState());
   }
@@ -39,7 +61,6 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
 
   FutureOr<void> quizContinueButtonClickedEvent(
       QuizContinueButtonClickedEvent event, Emitter<QuizState> emit) {
-        
     if (quizBrain.isQuizFinished()) {
       emit(QuizFinishedActionState());
     } else {

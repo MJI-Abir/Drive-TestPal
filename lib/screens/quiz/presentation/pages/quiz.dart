@@ -1,7 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:drive_test_pal/core/utils/app_routes.dart';
-import 'package:drive_test_pal/screens/home/presentation/blocks/homeBloc/home_bloc.dart';
-import 'package:drive_test_pal/screens/home/presentation/screens/home.dart';
 import 'package:drive_test_pal/screens/quiz/presentation/blocs/quiz/quiz_bloc.dart';
 import 'package:drive_test_pal/screens/quiz/presentation/widgets/loading_body.dart';
 import 'package:drive_test_pal/screens/quiz/presentation/widgets/options_widget.dart';
@@ -12,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:drive_test_pal/core/utils/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-// late QuizBrain quizBrain;
+final QuizBloc quizBloc = QuizBloc();
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -22,8 +20,6 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  final QuizBloc quizBloc = QuizBloc();
-
   @override
   void initState() {
     quizBloc.add(QuizInitialEvent());
@@ -57,10 +53,7 @@ class _QuizState extends State<Quiz> {
 
           case QuizLoadingSuccessState:
             final successState = state as QuizLoadingSuccessState;
-            quizSize = homeBloc.selectedQuestions.length;
-            // quizSize = successState.selectedQuestions.length;
-            // quizBrain =
-            //     QuizBrain(selectedQuestions: );
+            quizSize = quizBloc.selectedQuestions.length;
             return buildQuizScreen(successState);
 
           case QuizOptionSelectedActionState:

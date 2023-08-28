@@ -1,5 +1,5 @@
 import 'package:drive_test_pal/core/utils/constants.dart';
-import 'package:drive_test_pal/screens/home/presentation/blocks/homeBloc/home_bloc.dart';
+import 'package:drive_test_pal/screens/quiz/presentation/blocs/quiz/quiz_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

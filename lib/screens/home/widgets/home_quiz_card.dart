@@ -1,21 +1,23 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:drive_test_pal/core/utils/enum.dart';
 import 'package:drive_test_pal/screens/home/presentation/blocks/homeBloc/home_bloc.dart';
 import 'package:drive_test_pal/screens/home/presentation/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:drive_test_pal/core/utils/constants.dart';
-import 'package:drive_test_pal/core/utils/enum.dart';
 
 class HomeQuizCard extends StatelessWidget {
   const HomeQuizCard({
     Key? key,
     required this.index,
     required this.imageUrl,
+    required this.numOfQuizes,
     required this.difficulty,
   }) : super(key: key);
   final int index;
   final String imageUrl;
+  final int numOfQuizes;
   final DifficultyEnum difficulty;
 
   @override
@@ -71,7 +73,7 @@ class HomeQuizCard extends StatelessWidget {
                   margin: const EdgeInsets.only(left: kDefaultPadding),
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    '5 Quizes',
+                    '$numOfQuizes Quizes',
                     style: GoogleFonts.outfit(
                       textStyle: const TextStyle(
                         fontSize: 10,
