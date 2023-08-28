@@ -2,9 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:bloc/bloc.dart';
-import 'package:drive_test_pal/core/widgets/practice_question.dart';
-import 'package:drive_test_pal/core/data/question_data.dart';
-import 'package:drive_test_pal/screens/quiz/presentation/page/quiz.dart';
+import 'package:drive_test_pal/screens/home/presentation/blocks/homeBloc/home_bloc.dart';
 import 'package:meta/meta.dart';
 
 part 'quiz_event.dart';
@@ -23,10 +21,8 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
       QuizInitialEvent event, Emitter<QuizState> emit) async {
     emit(QuizLoadingState());
     //TODO: generate list of random practiceQuestions
-    QuestionData.questionBank.shuffle();
-    final selectedQuestions = QuestionData.questionBank.take(10).toList();
     await Future.delayed(const Duration(seconds: 2));
-    emit(QuizLoadingSuccessState(selectedQuestions: selectedQuestions));
+    emit(QuizLoadingSuccessState());
   }
 
   FutureOr<void> quizOptionSelectedEvent(

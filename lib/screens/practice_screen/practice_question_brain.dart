@@ -54,7 +54,6 @@ class PracticeQuestionBrain {
     }
   }
   
-
   void reset() {
     _questionId = 0;
   }

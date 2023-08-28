@@ -1,3 +1,4 @@
+import 'package:drive_test_pal/core/utils/enum.dart';
 import 'package:drive_test_pal/core/widgets/practice_question.dart';
 import 'package:drive_test_pal/core/data/question_data.dart';
 
@@ -8,7 +9,19 @@ class QuizBrain {
 
   int _randomQuestionId = 0;
   int _score = 0;
+  DifficultyEnum _difficulty = DifficultyEnum.easy;
   QuizBrain({required this.selectedQuestions});
+
+  void setDifficulty(DifficultyEnum difficulty) {
+    _difficulty = difficulty;
+  }
+
+  List<PracticeQuestion> getQuestionsWithCorrespondingDifficulty(
+      DifficultyEnum difficulty) {
+    return QuestionData.questionBank
+        .where((question) => question.difficultyEnum == _difficulty)
+        .toList();
+  }
 
   void nextQuestion() {
     if (_randomQuestionId < selectedQuestions.length) {
@@ -17,6 +30,7 @@ class QuizBrain {
   }
 
   String getQuestionText() {
+    print(selectedQuestions.length);
     return selectedQuestions[_randomQuestionId].questionText;
   }
 

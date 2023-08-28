@@ -43,8 +43,8 @@ class QuestionCategoryBloc
   FutureOr<void> questionCategorySelectedEvent(
       QuestionCategorySelectedEvent event,
       Emitter<QuestionCategoryState> emit) {
-        practiceQuestionBrain.reset();
-    emit(QCNavigateToPracticeQuestionScreenActionState(
-        selectedQuestionType: event.selectedQuestionType));
+    practiceQuestionBrain.reset();
+    practiceQuestionBrain.setQuestionType(event.selectedQuestionType);
+    emit(QCNavigateToPracticeQuestionScreenActionState());
   }
 }

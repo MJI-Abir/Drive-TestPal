@@ -1,17 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:drive_test_pal/core/utils/app_routes.dart';
+import 'package:drive_test_pal/screens/home/presentation/blocks/homeBloc/home_bloc.dart';
+import 'package:drive_test_pal/screens/home/presentation/screens/home.dart';
 import 'package:drive_test_pal/screens/quiz/presentation/blocs/quiz/quiz_bloc.dart';
-import 'package:drive_test_pal/screens/quiz/quiz_brain.dart';
-import 'package:drive_test_pal/screens/quiz/widgets/loading_body.dart';
-import 'package:drive_test_pal/screens/quiz/widgets/options_widget.dart';
-import 'package:drive_test_pal/screens/quiz/widgets/question_text_widget.dart';
+import 'package:drive_test_pal/screens/quiz/presentation/widgets/loading_body.dart';
+import 'package:drive_test_pal/screens/quiz/presentation/widgets/options_widget.dart';
+import 'package:drive_test_pal/screens/quiz/presentation/widgets/question_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:drive_test_pal/core/utils/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-late QuizBrain quizBrain;
+// late QuizBrain quizBrain;
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -56,9 +57,10 @@ class _QuizState extends State<Quiz> {
 
           case QuizLoadingSuccessState:
             final successState = state as QuizLoadingSuccessState;
-            quizSize = successState.selectedQuestions.length;
-            quizBrain =
-                QuizBrain(selectedQuestions: successState.selectedQuestions);
+            quizSize = homeBloc.selectedQuestions.length;
+            // quizSize = successState.selectedQuestions.length;
+            // quizBrain =
+            //     QuizBrain(selectedQuestions: );
             return buildQuizScreen(successState);
 
           case QuizOptionSelectedActionState:
@@ -105,19 +107,22 @@ class _QuizState extends State<Quiz> {
             ),
           ),
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(kDefaultPadding),
-            child: Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(bottom: kDefaultPadding),
-                  child: Text(
-                    '${quizBrain.getQuestionId()}/$quizSize',
-                    style: const TextStyle(fontWeight: FontWeight.w600),
-                  ),
+        body: Padding(
+          padding: const EdgeInsets.all(kDefaultPadding),
+          child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(bottom: kDefaultPadding),
+                child: Text(
+                  '${quizBrain.getQuestionId()}/$quizSize',
+                  style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
-                Card(
+              ),
+              SingleChildScrollView(
+                physics: const BouncingScrollPhysics(
+                  parent: AlwaysScrollableScrollPhysics(),
+                ),
+                child: Card(
                   elevation: kDefaultElevation,
                   shape: BeveledRectangleBorder(
                     borderRadius: BorderRadius.circular(kBorderRadius),
@@ -130,8 +135,6 @@ class _QuizState extends State<Quiz> {
                       color: kAppThemeColor.withOpacity(0.75),
                     ),
                     child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      // crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
                         const QuestionTextWidget(),
                         kDividerStyle,
@@ -155,8 +158,8 @@ class _QuizState extends State<Quiz> {
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -169,9 +172,7 @@ class _QuizState extends State<Quiz> {
         borderRadius: BorderRadius.all(
           Radius.circular(kBorderRadius),
         ),
-        gradient: LinearGradient(
-          colors: [kButtonColor, Color(0xB01C3971)],
-        ),
+        color: kButtonColor,
       ),
       child: TextButton(
         onPressed: () {

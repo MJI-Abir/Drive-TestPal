@@ -18,8 +18,4 @@ class QCLoadingSuccessState extends QuestionCategoryState{
 
 }
 
-class QCNavigateToPracticeQuestionScreenActionState extends QuestionCategoryActionState{
-    final QuestionTypeEnum selectedQuestionType;
-
-  QCNavigateToPracticeQuestionScreenActionState({required this.selectedQuestionType});
-}
+class QCNavigateToPracticeQuestionScreenActionState extends QuestionCategoryActionState{}

@@ -32,7 +32,6 @@ class _QuestionCategoryScreenState extends State<QuestionCategoryScreen> {
       buildWhen: (previous, current) => current is! QuestionCategoryActionState,
       listener: (context, state) {
         if (state is QCNavigateToPracticeQuestionScreenActionState) {
-          practiceQuestionBrain.setQuestionType(state.selectedQuestionType);
           Navigator.pushNamed(context, AppRoutes.practicePage);
         }
       },

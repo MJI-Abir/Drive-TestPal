@@ -1,8 +1,8 @@
-import 'package:drive_test_pal/features/quiz/presentation/quiz_result.dart';
-import 'package:drive_test_pal/screens/home/presentation/home.dart';
+import 'package:drive_test_pal/screens/home/presentation/screens/home.dart';
 import 'package:drive_test_pal/screens/practice_screen/presentation/practice.dart';
 import 'package:drive_test_pal/screens/question_category/presentation/pages/question_category_screen.dart';
-import 'package:drive_test_pal/screens/quiz/presentation/page/quiz.dart';
+import 'package:drive_test_pal/screens/quiz/presentation/pages/quiz.dart';
+import 'package:drive_test_pal/screens/quiz/presentation/pages/quiz_result.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {

@@ -11,10 +11,10 @@ final class QuizInitialState extends QuizState {}
 class QuizLoadingState extends QuizState{}
 
 class QuizLoadingSuccessState extends QuizState {
-  final List<PracticeQuestion> selectedQuestions;
-  QuizLoadingSuccessState({
-    required this.selectedQuestions,
-  });
+  // final List<PracticeQuestion> selectedQuestions;
+  // QuizLoadingSuccessState({
+  //   required this.selectedQuestions,
+  // });
 }
 
 class QuizErrorState extends QuizState{

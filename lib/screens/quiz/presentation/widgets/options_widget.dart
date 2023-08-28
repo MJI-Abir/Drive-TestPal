@@ -1,6 +1,6 @@
 import 'package:drive_test_pal/core/utils/constants.dart';
+import 'package:drive_test_pal/screens/home/presentation/blocks/homeBloc/home_bloc.dart';
 import 'package:drive_test_pal/screens/quiz/presentation/blocs/quiz/quiz_bloc.dart';
-import 'package:drive_test_pal/screens/quiz/presentation/page/quiz.dart';
 import 'package:flutter/material.dart';
 
 int? selectedOptionIndex;
@@ -31,9 +31,9 @@ class OptionsWidget extends StatelessWidget {
               ? (optionSelectedState.isCorrectAnswer
                   ? Colors.green
                   : Colors.red)
-              : kAppThemeColor.withOpacity(0.8));
+              : const Color(0xFF102143));
     } else {
-      optionColor = kAppThemeColor.withOpacity(0.8);
+      optionColor = const Color(0xFF102143);
     }
     return Card(
       elevation: kDefaultElevation,
@@ -43,12 +43,18 @@ class OptionsWidget extends StatelessWidget {
       child: Container(
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [optionColor, optionColor.withOpacity(0.8)],
+          ),
           color: optionColor,
           borderRadius: BorderRadius.circular(kBorderRadius),
         ),
         child: Row(
           children: [
             Checkbox(
+              checkColor: Colors.black,
+              fillColor:
+                  MaterialStateColor.resolveWith((states) => Colors.white),
               value: isOptionSelected
                   ? (selectedOptionIndex == optionNumberIndex ? true : false)
                   : false,
@@ -67,7 +73,7 @@ class OptionsWidget extends StatelessWidget {
             Text(
               quizBrain.getOptions()[optionNumberIndex],
               style: const TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: 15.0,
               ),
             ),

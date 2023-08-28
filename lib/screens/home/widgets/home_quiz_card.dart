@@ -1,42 +1,51 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:drive_test_pal/screens/home/presentation/blocks/homeBloc/home_bloc.dart';
+import 'package:drive_test_pal/screens/home/presentation/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:drive_test_pal/core/utils/app_routes.dart';
 import 'package:drive_test_pal/core/utils/constants.dart';
+import 'package:drive_test_pal/core/utils/enum.dart';
 
-class QuizCard extends StatelessWidget {
-  const QuizCard({
+class HomeQuizCard extends StatelessWidget {
+  const HomeQuizCard({
     Key? key,
     required this.index,
+    required this.imageUrl,
+    required this.difficulty,
   }) : super(key: key);
   final int index;
+  final String imageUrl;
+  final DifficultyEnum difficulty;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
         left: kDefaultPadding,
-        right: kDefaultPadding,
+        // right: kDefaultPadding,
       ),
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * .5,
+        width: MediaQuery.of(context).size.width * .50,
+        // height: MediaQuery.of(context).size.height * .30,
         child: GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, AppRoutes.quizPage);
+            homeBloc.add(
+              HomeCardClickedEvent(this),
+            );
           },
           child: Card(
             elevation: 5,
             margin: EdgeInsets.zero,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(kBorderRadius*2),
+              borderRadius: BorderRadius.circular(kBorderRadius * 2),
             ),
             clipBehavior: Clip.antiAlias,
             color: kAppThemeColor.withOpacity(0.8),
             child: Column(
               children: [
-                const Image(
-                  image: AssetImage('assets/images/traffic1.jpg'),
+                Image(
+                  image: AssetImage(imageUrl),
                   fit: BoxFit.fill,
                 ),
                 const SizedBox(
@@ -49,7 +58,7 @@ class QuizCard extends StatelessWidget {
                     'Practice Quiz $index',
                     style: GoogleFonts.outfit(
                       textStyle: const TextStyle(
-                        fontSize: 20,
+                        fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -65,7 +74,7 @@ class QuizCard extends StatelessWidget {
                     '5 Quizes',
                     style: GoogleFonts.outfit(
                       textStyle: const TextStyle(
-                        fontSize: 12,
+                        fontSize: 10,
                       ),
                     ),
                   ),
@@ -82,6 +91,7 @@ class QuizCard extends StatelessWidget {
                         'START LEARNING',
                         style: GoogleFonts.figtree(
                           textStyle: const TextStyle(
+                            fontSize: 12,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
