@@ -57,17 +57,17 @@ class OptionsWidget extends StatelessWidget {
               value: isOptionSelected
                   ? (selectedOptionIndex == optionNumberIndex ? true : false)
                   : false,
-              onChanged: (newValue) {
-                if (newValue == true) {
-                  selectedOptionIndex = optionNumberIndex;
-                  quizBloc.add(
-                    QuizOptionSelectedEvent(
-                      selectedOptionIndex: optionNumberIndex,
-                      correctOptionIndex: quizBrain.getCorrectOptionIndex(),
-                    ),
-                  );
-                }
-              },
+              onChanged: isOptionSelected
+                  ? null
+                  : (newValue) {
+                      selectedOptionIndex = optionNumberIndex;
+                      quizBloc.add(
+                        QuizOptionSelectedEvent(
+                          selectedOptionIndex: optionNumberIndex,
+                          correctOptionIndex: quizBrain.getCorrectOptionIndex(),
+                        ),
+                      );
+                    },
             ),
             Text(
               quizBrain.getOptions()[optionNumberIndex],

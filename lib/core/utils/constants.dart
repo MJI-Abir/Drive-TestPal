@@ -21,6 +21,10 @@ const kNumberTextStyle = TextStyle(
   fontWeight: FontWeight.w900,
 );
 
+const kSizedBox = SizedBox(
+  height: 10,
+);
+
 const kLargeButtonTextStyle = TextStyle(
   fontSize: 25.0,
   fontWeight: FontWeight.bold,
@@ -68,15 +72,3 @@ const kBodyTextStyle = TextStyle(
 const kDividerStyle = Divider(thickness: 2.0, color: Colors.blueGrey);
 
 const kImagePath = 'assets/images/';
-
-List<String> imageName = [
-    'easy1.jpg',
-    'easy2.jpg',
-    'easy3.png',
-    'medium1.jpg',
-    'medium2.png',
-    'medium3.png',
-    'hard1.png',
-    'hard2.png',
-    'hard3.jpg',
-  ];

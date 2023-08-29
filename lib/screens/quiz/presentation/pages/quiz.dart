@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:drive_test_pal/core/utils/app_routes.dart';
 import 'package:drive_test_pal/screens/quiz/presentation/blocs/quiz/quiz_bloc.dart';
 import 'package:drive_test_pal/screens/quiz/presentation/widgets/loading_body.dart';
@@ -41,6 +42,30 @@ class _QuizState extends State<Quiz> {
       // buildWhen: (previous, current) => current is! QuizActionState,
       listener: (context, state) {
         if (state is QuizFinishedActionState) {
+          // final materialBanner = MaterialBanner(
+          //   forceActionsBelow: true,
+          //   content: AwesomeSnackbarContent(
+          //     title: 'OH NICE!!',
+          //     message: 'You completed the quiz',
+          //     contentType: ContentType.success,
+          //     inMaterialBanner: true,
+          //   ),
+          //   actions: const [SizedBox.shrink()],
+          // );
+          // ScaffoldMessenger.of(context)
+          //   ..hideCurrentMaterialBanner()
+          //   ..showMaterialBanner(materialBanner);
+          final snackBar = SnackBar(
+              behavior: SnackBarBehavior.floating,
+              elevation: 0,
+              backgroundColor: Colors.white,
+              content: AwesomeSnackbarContent(
+                  title: 'OH NICE!',
+                  message: 'You completed the quiz',
+                  contentType: ContentType.success));
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(snackBar);
           Navigator.pushNamed(context, AppRoutes.quizResultPage);
         }
       },
@@ -129,7 +154,9 @@ class _QuizState extends State<Quiz> {
                     ),
                     child: Column(
                       children: <Widget>[
-                        const QuestionTextWidget(),
+                        //don't use const here. the questionText won't change then.
+                        // ignore: prefer_const_constructors
+                        QuestionTextWidget(),
                         kDividerStyle,
                         for (int i = 0; i < quizBrain.getOptions().length; i++)
                           OptionsWidget(

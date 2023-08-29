@@ -6,34 +6,36 @@ QuestionData questionData = QuestionData();
 class QuizBrain {
   final List<PracticeQuestion> selectedQuestions;
 
-  int _randomQuestionId = 0;
+  int _questionId = 0;
   int _score = 0;
   QuizBrain({required this.selectedQuestions});
 
   void nextQuestion() {
-    if (_randomQuestionId < selectedQuestions.length) {
-      _randomQuestionId++;
+    if (_questionId < selectedQuestions.length) {
+      _questionId++;
     }
   }
 
   String getQuestionText() {
-    return selectedQuestions[_randomQuestionId].questionText;
+    print('questionId from getQuestionText(): $_questionId');
+    return selectedQuestions[_questionId].questionText;
   }
 
   List<String> getOptions() {
-    return selectedQuestions[_randomQuestionId].options;
+    print('questionId from getOptions(): $_questionId');
+    return selectedQuestions[_questionId].options;
   }
 
   int getCorrectOptionIndex() {
-    return selectedQuestions[_randomQuestionId].questionAnswer - 1;
+    return selectedQuestions[_questionId].questionAnswer - 1;
   }
 
   int getQuestionId() {
-    return _randomQuestionId + 1;
+    return _questionId + 1;
   }
 
   bool isQuizFinished() {
-    return _randomQuestionId >= (selectedQuestions.length - 1) ? true : false;
+    return _questionId >= (selectedQuestions.length - 1) ? true : false;
   }
 
   void incrementScore() {
@@ -44,7 +46,11 @@ class QuizBrain {
     return _score;
   }
 
+  void reset() {
+    _questionId = 0;
+  }
+
   String getExplanation() {
-    return selectedQuestions[_randomQuestionId].explanation;
+    return selectedQuestions[_questionId].explanation;
   }
 }

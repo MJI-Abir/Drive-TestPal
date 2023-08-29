@@ -62,9 +62,7 @@ class _HomeState extends State<Home> {
                 const TestHeadlineWidget(
                   difficulty: 'Easy',
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                kSizedBox,
                 QuizCardScrollView(
                   difficulty: DifficultyEnum.easy,
                   questions: easyQuestions,
@@ -72,9 +70,7 @@ class _HomeState extends State<Home> {
                 const TestHeadlineWidget(
                   difficulty: 'MEDIUM',
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                kSizedBox,
                 QuizCardScrollView(
                   difficulty: DifficultyEnum.medium,
                   questions: mediumQuestions,
@@ -82,9 +78,7 @@ class _HomeState extends State<Home> {
                 const TestHeadlineWidget(
                   difficulty: 'Hard',
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                kSizedBox,
                 QuizCardScrollView(
                   difficulty: DifficultyEnum.hard,
                   questions: hardQuestions,

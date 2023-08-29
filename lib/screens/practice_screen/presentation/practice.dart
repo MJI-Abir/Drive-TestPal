@@ -35,8 +35,6 @@ class _PracticeScreenState extends State<PracticeScreen> {
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.white60),
             child: Column(
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              // crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 //Question Text
                 const QuestionTextWidget(),
