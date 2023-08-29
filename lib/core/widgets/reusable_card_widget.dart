@@ -1,5 +1,5 @@
 import 'package:drive_test_pal/core/utils/constants.dart';
-import 'package:drive_test_pal/screens/home/widgets/icon_content.dart';
+import 'package:drive_test_pal/core/widgets/icon_content.dart';
 import 'package:flutter/material.dart';
 
 class ReusableCardWidget extends StatelessWidget {

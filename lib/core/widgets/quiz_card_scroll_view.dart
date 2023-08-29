@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:drive_test_pal/core/utils/constants.dart';
 import 'package:drive_test_pal/core/utils/enum.dart';
-import 'package:drive_test_pal/screens/home/widgets/home_quiz_card.dart';
+import 'package:drive_test_pal/core/widgets/home_quiz_card.dart';
 
 // ignore: must_be_immutable
 class QuizCardScrollView extends StatelessWidget {

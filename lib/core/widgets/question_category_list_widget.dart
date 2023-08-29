@@ -1,5 +1,5 @@
+import 'package:drive_test_pal/core/widgets/question_category_tile.dart';
 import 'package:drive_test_pal/screens/question_category/presentation/blocs/question_category/question_category_bloc.dart';
-import 'package:drive_test_pal/screens/question_category/widgets/question_category_tile.dart';
 import 'package:flutter/material.dart';
 
 class QuestionCategoryListWidget extends StatelessWidget {

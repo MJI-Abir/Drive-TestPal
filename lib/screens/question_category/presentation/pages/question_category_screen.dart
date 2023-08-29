@@ -1,8 +1,8 @@
 import 'package:drive_test_pal/core/utils/app_routes.dart';
 import 'package:drive_test_pal/core/utils/constants.dart';
+import 'package:drive_test_pal/core/widgets/question_category_list_widget.dart';
 import 'package:drive_test_pal/screens/practice_screen/practice_question_brain.dart';
 import 'package:drive_test_pal/screens/question_category/presentation/blocs/question_category/question_category_bloc.dart';
-import 'package:drive_test_pal/screens/question_category/widgets/question_category_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

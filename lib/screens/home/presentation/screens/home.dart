@@ -4,9 +4,9 @@ import 'package:drive_test_pal/core/data/question_data.dart';
 import 'package:drive_test_pal/core/utils/app_routes.dart';
 import 'package:drive_test_pal/core/utils/enum.dart';
 import 'package:drive_test_pal/core/widgets/practice_question.dart';
+import 'package:drive_test_pal/core/widgets/quiz_card_scroll_view.dart';
+import 'package:drive_test_pal/core/widgets/test_headline_widget.dart';
 import 'package:drive_test_pal/screens/home/presentation/blocks/homeBloc/home_bloc.dart';
-import 'package:drive_test_pal/screens/home/widgets/quiz_card_scroll_view.dart';
-import 'package:drive_test_pal/screens/home/widgets/test_headline_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,6 +24,13 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int activeIndex = 0;
+
+  void onTap(int index) {
+    setState(() {
+      activeIndex = index;
+    });
+  }
+
   @override
   void initState() {
     homeBloc.add(HomeInitialEvent());
@@ -41,12 +48,6 @@ class _HomeState extends State<Home> {
       .toList();
   @override
   Widget build(BuildContext context) {
-    void onTap(int index) {
-      setState(() {
-        activeIndex = index;
-      });
-    }
-
     return BlocConsumer<HomeBloc, HomeState>(
       bloc: homeBloc,
       listenWhen: (previous, current) => current is HomeActionState,
@@ -91,6 +92,7 @@ class _HomeState extends State<Home> {
                 leftCornerRadius: 16,
                 rightCornerRadius: 16,
                 iconSize: 25,
+                elevation: 6,
                 gapLocation: GapLocation.center,
                 activeIndex: activeIndex,
                 notchSmoothness: NotchSmoothness.softEdge,
