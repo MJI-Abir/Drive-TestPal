@@ -8,6 +8,7 @@ const kInactiveCardColor = Color(0x100c353b);
 const kAppBarColor = Colors.transparent;
 const kOptionDefaultColor = Colors.black12;
 const kButtonColor = Color(0xFF1C3971);
+const kActiveColor = Color(0xFF543ACC);
 
 const kBorderRadius = 10.0;
 const kLabelTextStyle = TextStyle(
@@ -60,11 +61,6 @@ const kButtonPadding = EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0);
 
 const kDefaultPadding = 10.0;
 
-const kBMITextStyle = TextStyle(
-  fontSize: 100.0,
-  fontWeight: FontWeight.bold,
-);
-
 const kBodyTextStyle = TextStyle(
   fontSize: 22.0,
 );
@@ -72,3 +68,10 @@ const kBodyTextStyle = TextStyle(
 const kDividerStyle = Divider(thickness: 2.0, color: Colors.blueGrey);
 
 const kImagePath = 'assets/images/';
+
+const kBottomNavIcons = [
+  Icons.home,
+  Icons.library_add,
+  Icons.account_circle,
+  Icons.settings,
+];

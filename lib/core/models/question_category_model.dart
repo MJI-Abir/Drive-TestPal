@@ -1,5 +1,5 @@
 
-import '../../../core/utils/enum.dart';
+import '../utils/enum.dart';
 
 class QuestionCategoryModel{
   final String title;

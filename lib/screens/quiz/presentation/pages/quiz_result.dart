@@ -16,7 +16,7 @@ class _QuizResultState extends State<QuizResult> {
   late ValueNotifier<double> quizScoreValueNotifier;
 
   @override
-  void initState(){
+  void initState() {
     quizScoreValueNotifier = ValueNotifier(0);
     super.initState();
     calculateQuizScore();
@@ -49,20 +49,18 @@ class _QuizResultState extends State<QuizResult> {
             Text(
               'Correct: ${quizBrain.getScore()}',
               style: GoogleFonts.aBeeZee(
-                textStyle: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                )
-              ),
+                  textStyle: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              )),
             ),
             Text(
               'Incorrect: ${quizBloc.selectedQuestions.length - quizBrain.getScore()}',
               style: GoogleFonts.aBeeZee(
-                textStyle: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                )
-              ),
+                  textStyle: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              )),
             ),
           ],
         ),
@@ -75,9 +73,10 @@ class _QuizResultState extends State<QuizResult> {
     quizScoreValueNotifier.dispose();
     super.dispose();
   }
-  
+
   void calculateQuizScore() {
-    double score = (quizBrain.getScore()/quizBloc.selectedQuestions.length)*100;
+    double score =
+        (quizBrain.getScore() / quizBloc.selectedQuestions.length) * 100;
     quizScoreValueNotifier.value = score;
   }
 }

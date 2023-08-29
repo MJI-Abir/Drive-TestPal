@@ -14,7 +14,7 @@ class TestHeadlineWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-          top: kDefaultPadding * 2, left: kDefaultPadding),
+          top: kDefaultPadding * 2, left: kDefaultPadding*2),
       child: Text(
         difficulty,
         style: GoogleFonts.aBeeZee(

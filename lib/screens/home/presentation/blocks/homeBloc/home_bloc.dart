@@ -13,6 +13,7 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc() : super(HomeInitial()) {
     on<HomeCardClickedEvent>(homeCardClickedEvent);
+    on<HomeInitialEvent>(homeInitialEvent);
   }
 
   FutureOr<void> homeCardClickedEvent(
@@ -21,5 +22,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     quizBloc.indexFromBloc = event.clickedCard.index - 1;
     quizBrain.reset();
     emit(HomeCardSelectedState());
+  }
+
+  FutureOr<void> homeInitialEvent(
+      HomeInitialEvent event, Emitter<HomeState> emit) async {
+    emit(HomeLoadingState());
+    await Future.delayed(
+      const Duration(seconds: 2),
+    );
+    emit(HomeLoadingSuccessState());
   }
 }

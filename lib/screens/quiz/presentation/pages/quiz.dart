@@ -56,6 +56,7 @@ class _QuizState extends State<Quiz> {
           //   ..hideCurrentMaterialBanner()
           //   ..showMaterialBanner(materialBanner);
           final snackBar = SnackBar(
+              duration: const Duration(seconds: 2),
               behavior: SnackBarBehavior.floating,
               elevation: 0,
               backgroundColor: Colors.white,

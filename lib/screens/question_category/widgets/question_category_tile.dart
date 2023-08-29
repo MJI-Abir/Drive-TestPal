@@ -1,5 +1,5 @@
 import 'package:drive_test_pal/screens/practice_screen/practice_question_brain.dart';
-import 'package:drive_test_pal/screens/question_category/models/question_category_model.dart';
+import 'package:drive_test_pal/core/models/question_category_model.dart';
 import 'package:drive_test_pal/screens/question_category/presentation/blocs/question_category/question_category_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

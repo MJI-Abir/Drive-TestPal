@@ -24,12 +24,12 @@ class HomeQuizCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        left: kDefaultPadding,
-        // right: kDefaultPadding,
+        left: kDefaultPadding*2,
+        // right: kDefaultPadding*2,
       ),
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * .50,
-        // height: MediaQuery.of(context).size.height * .30,
+        width: MediaQuery.of(context).size.width * .40,
+        height: MediaQuery.of(context).size.height * .22,
         child: GestureDetector(
           onTap: () {
             homeBloc.add(
@@ -40,7 +40,7 @@ class HomeQuizCard extends StatelessWidget {
             elevation: 5,
             margin: EdgeInsets.zero,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(kBorderRadius * 2),
+              borderRadius: BorderRadius.circular(kBorderRadius),
             ),
             clipBehavior: Clip.antiAlias,
             color: kAppThemeColor.withOpacity(0.8),
@@ -48,6 +48,8 @@ class HomeQuizCard extends StatelessWidget {
               children: [
                 Image(
                   image: AssetImage(imageUrl),
+                  width: MediaQuery.of(context).size.width * .4,
+                  height: MediaQuery.of(context).size.height * .12,
                   fit: BoxFit.fill,
                 ),
                 const SizedBox(

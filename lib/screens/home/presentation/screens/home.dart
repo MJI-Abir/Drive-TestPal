@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:drive_test_pal/core/data/question_data.dart';
 import 'package:drive_test_pal/core/utils/app_routes.dart';
 import 'package:drive_test_pal/core/utils/enum.dart';
@@ -22,6 +23,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  int activeIndex = 0;
+  @override
+  void initState() {
+    homeBloc.add(HomeInitialEvent());
+    super.initState();
+  }
+
   List<PracticeQuestion> easyQuestions = QuestionData.questionBank
       .where((question) => question.difficultyEnum == DifficultyEnum.easy)
       .toList();
@@ -33,6 +41,12 @@ class _HomeState extends State<Home> {
       .toList();
   @override
   Widget build(BuildContext context) {
+    void onTap(int index) {
+      setState(() {
+        activeIndex = index;
+      });
+    }
+
     return BlocConsumer<HomeBloc, HomeState>(
       bloc: homeBloc,
       listenWhen: (previous, current) => current is HomeActionState,
@@ -43,50 +57,81 @@ class _HomeState extends State<Home> {
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: kAppThemeColor,
-            title: Text(
-              'DMV Acer',
-              style: GoogleFonts.barriecito(
-                  fontSize: 24.0,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-          body: SingleChildScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const TestHeadlineWidget(
-                  difficulty: 'Easy',
+        switch (state.runtimeType) {
+          case HomeLoadingState:
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          case HomeLoadingSuccessState:
+            return Scaffold(
+              appBar: AppBar(
+                backgroundColor: kAppThemeColor,
+                title: Text(
+                  'DMV Acer',
+                  style: GoogleFonts.barriecito(
+                      fontSize: 24.0,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600),
                 ),
-                kSizedBox,
-                QuizCardScrollView(
-                  difficulty: DifficultyEnum.easy,
-                  questions: easyQuestions,
+              ),
+              floatingActionButton: const FloatingActionButton(
+                onPressed: null,
+                backgroundColor: kActiveColor,
+                child: Icon(Icons.dark_mode),
+              ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
+              bottomNavigationBar: AnimatedBottomNavigationBar(
+                icons: kBottomNavIcons,
+                backgroundColor: Colors.black87,
+                inactiveColor: Colors.white,
+                activeColor: kActiveColor,
+                leftCornerRadius: 16,
+                rightCornerRadius: 16,
+                iconSize: 25,
+                gapLocation: GapLocation.center,
+                activeIndex: activeIndex,
+                notchSmoothness: NotchSmoothness.softEdge,
+                onTap: onTap,
+              ),
+              body: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    const TestHeadlineWidget(
+                      difficulty: 'Easy',
+                    ),
+                    kSizedBox,
+                    QuizCardScrollView(
+                      difficulty: DifficultyEnum.easy,
+                      questions: easyQuestions,
+                    ),
+                    const TestHeadlineWidget(
+                      difficulty: 'MEDIUM',
+                    ),
+                    kSizedBox,
+                    QuizCardScrollView(
+                      difficulty: DifficultyEnum.medium,
+                      questions: mediumQuestions,
+                    ),
+                    const TestHeadlineWidget(
+                      difficulty: 'Hard',
+                    ),
+                    kSizedBox,
+                    QuizCardScrollView(
+                      difficulty: DifficultyEnum.hard,
+                      questions: hardQuestions,
+                    ),
+                  ],
                 ),
-                const TestHeadlineWidget(
-                  difficulty: 'MEDIUM',
-                ),
-                kSizedBox,
-                QuizCardScrollView(
-                  difficulty: DifficultyEnum.medium,
-                  questions: mediumQuestions,
-                ),
-                const TestHeadlineWidget(
-                  difficulty: 'Hard',
-                ),
-                kSizedBox,
-                QuizCardScrollView(
-                  difficulty: DifficultyEnum.hard,
-                  questions: hardQuestions,
-                ),
-              ],
-            ),
-          ),
-        );
+              ),
+            );
+          default:
+            return const SizedBox();
+        }
       },
     );
   }
