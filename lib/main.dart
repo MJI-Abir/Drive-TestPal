@@ -17,7 +17,7 @@ class DriveTestPal extends StatelessWidget {
         primaryColor: kAppThemeColor,
         scaffoldBackgroundColor: kAppThemeColor,
       ),
-      initialRoute: AppRoutes.homePage,
+      initialRoute: AppRoutes.bottomNavBar,
       routes: AppRoutes.routes,
     );
   }

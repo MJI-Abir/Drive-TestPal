@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:drive_test_pal/core/utils/enum.dart';
-import 'package:drive_test_pal/screens/home/presentation/blocks/homeBloc/home_bloc.dart';
+import 'package:drive_test_pal/screens/home/presentation/blocs/homeBloc/home_bloc.dart';
 import 'package:drive_test_pal/screens/home/presentation/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
