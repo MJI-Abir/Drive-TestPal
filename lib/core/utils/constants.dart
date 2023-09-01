@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 const kDefaultElevation = 6.0;
 
@@ -26,6 +27,10 @@ const kSizedBox = SizedBox(
   height: 10,
 );
 
+const kSmallSizedBox = SizedBox(
+  height: 5,
+);
+
 const kLargeButtonTextStyle = TextStyle(
   fontSize: 25.0,
   fontWeight: FontWeight.bold,
@@ -34,6 +39,14 @@ const kLargeButtonTextStyle = TextStyle(
 const kTitleTextStyle = TextStyle(
   fontSize: 20.0,
   fontWeight: FontWeight.bold,
+);
+
+TextStyle kTitleTextStyleGoogle = GoogleFonts.spaceGrotesk(
+  textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+);
+
+TextStyle kSubtitleTextStyleGoogle = GoogleFonts.aBeeZee(
+  textStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
 );
 
 const kQuestionCatTitleStyle = TextStyle(

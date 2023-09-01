@@ -5,7 +5,6 @@ import 'package:drive_test_pal/screens/library/presentation/screens/library_page
 import 'package:drive_test_pal/screens/profile/presentation/screens/profile_page.dart';
 import 'package:drive_test_pal/screens/settings/presentation/screens/settings_page.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -33,17 +32,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: kAppThemeColor,
-        title: Text(
-          'DMV Acer',
-          style: GoogleFonts.barriecito(
-              fontSize: 24.0, color: Colors.black, fontWeight: FontWeight.w600),
-        ),
-      ),
       floatingActionButton: const FloatingActionButton(
         onPressed: null,
-        backgroundColor: kActiveColor,
+        backgroundColor: Colors.black,
         child: Icon(Icons.dark_mode),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

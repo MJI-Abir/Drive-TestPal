@@ -8,6 +8,7 @@ import 'package:drive_test_pal/core/widgets/home_quiz_card.dart';
 
 // ignore: must_be_immutable
 class QuizCardScrollView extends StatelessWidget {
+  int j = 1;
   final DifficultyEnum difficulty;
   final List<PracticeQuestion> questions;
   QuizCardScrollView({
@@ -15,7 +16,6 @@ class QuizCardScrollView extends StatelessWidget {
     required this.difficulty,
     required this.questions,
   }) : super(key: key);
-  int j = 1;
 
   @override
   Widget build(BuildContext context) {

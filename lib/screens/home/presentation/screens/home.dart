@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:drive_test_pal/core/utils/constants.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 final HomeBloc homeBloc = HomeBloc();
 
@@ -54,36 +55,48 @@ class _HomeState extends State<Home> {
               child: CircularProgressIndicator(),
             );
           case HomeLoadingSuccessState:
-            return SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const TestHeadlineWidget(
-                    difficulty: 'Easy',
-                  ),
-                  kSizedBox,
-                  QuizCardScrollView(
-                    difficulty: DifficultyEnum.easy,
-                    questions: easyQuestions,
-                  ),
-                  const TestHeadlineWidget(
-                    difficulty: 'Medium',
-                  ),
-                  kSizedBox,
-                  QuizCardScrollView(
-                    difficulty: DifficultyEnum.medium,
-                    questions: mediumQuestions,
-                  ),
-                  const TestHeadlineWidget(
-                    difficulty: 'Hard',
-                  ),
-                  kSizedBox,
-                  QuizCardScrollView(
-                    difficulty: DifficultyEnum.hard,
-                    questions: hardQuestions,
-                  ),
-                ],
+            return Scaffold(
+              appBar: AppBar(
+                backgroundColor: kAppThemeColor,
+                title: Text(
+                  'DMV Acer',
+                  style: GoogleFonts.barriecito(
+                      fontSize: 24.0,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600),
+                ),
+              ),
+              body: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    const TestHeadlineWidget(
+                      difficulty: 'Easy',
+                    ),
+                    kSizedBox,
+                    QuizCardScrollView(
+                      difficulty: DifficultyEnum.easy,
+                      questions: easyQuestions,
+                    ),
+                    const TestHeadlineWidget(
+                      difficulty: 'Medium',
+                    ),
+                    kSizedBox,
+                    QuizCardScrollView(
+                      difficulty: DifficultyEnum.medium,
+                      questions: mediumQuestions,
+                    ),
+                    const TestHeadlineWidget(
+                      difficulty: 'Hard',
+                    ),
+                    kSizedBox,
+                    QuizCardScrollView(
+                      difficulty: DifficultyEnum.hard,
+                      questions: hardQuestions,
+                    ),
+                  ],
+                ),
               ),
             );
           default:
